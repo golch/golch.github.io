@@ -1,0 +1,111 @@
+---
+layout: post
+title: "알고리즘 공부 #2"
+date: 2015-03-31 16:35:47.000000000 +09:00
+type: post
+published: true
+status: publish
+categories:
+- "프로그래밍"
+tags:
+- algospot
+- "알고리즘"
+- JAVA
+meta:
+  _edit_last: '16999834'
+  geo_public: '0'
+  _wpcom_is_markdown: '1'
+  _publicize_pending: '1'
+  _oembed_df38be54f94e962af32bfdcd1610cd34: "{{unknown}}"
+  _oembed_792816a10463c9ad36a712b0176802ae: "{{unknown}}"
+  _oembed_a425d04989b689fe4bb36d58e60a7fba: "{{unknown}}"
+  _oembed_a111274e4d56c52831fb78a8b734cbb8: "{{unknown}}"
+  _oembed_c70a4d8bfa02cee756bb1c7206362f7d: "{{unknown}}"
+  _oembed_c5c29bed1252ec287f36d1e55f77b42b: "{{unknown}}"
+author:
+  login: golch51
+  email: p2r64h32@gmail.com
+  display_name: golch51
+  first_name: ''
+  last_name: ''
+---
+<p>Algospot 튜토리얼 DRAWRECT 문제</p>
+<p>https://algospot.com/judge/problem/read/DRAWRECT</p>
+<p>이번 문제는 직사각형의 3점의 좌표를 알 때, 나머지 한 좌표를 구하는 프로그램을 작성하는 문제다. 이걸 풀려고 종이에 사각형을 그리면서 중학교때 풀었던 수학문제였구나 라는 생각을 했다. 요즘은 초등학교에서 배우려나...?</p>
+<p>풀이는 그림그리면서 생각이 났고, 일단 입력값을 받아서 처리해야 한다. 그런데 Scanner 의 next() 메소드를 써본적이 없어서 어떻게 받아오는지 잘 모르겠다. 구글링 구글링!ㅋㅋ</p>
+<p>nextInt() 메소드를 사용해서 처리해야 공백이 있는 입력을 받아올 수 있군 ㅋㅋㅋ</p>
+<p>아… 삽질했다 ㅋㅋ 직사각형이 좌표평면 위에 기울어져 있어도 구할 수 있는 프로그램을 짜고있었는데 문제를 다시 읽어보니 기울어질 수 없는 조건이네… ㅠㅠ</p>
+<p>그럼 로직이 더 간단하지 ㅋㅋㅋ<br />
+아놔 튜토리얼이라고 해놓고 왜이렇게 어렵나 했네..</p>
+<p><a href="http://golch51.files.wordpress.com/2015/03/ade7247b3aed610cf5a58b3424da6de0.png"><img class="alignnone size-full wp-image-369" src="{{ site.baseurl }}/assets/ade7247b3aed610cf5a58b3424da6de0.png" alt="" width="474" height="331" /></a></p>
+<p>두 번이나 틀리고나서 결국 정답!ㅋㅋ</p>
+<p>[code lang=text]<br />
+import java.util.Scanner;</p>
+<p>public class Main {<br />
+public static void main(String[] args) {</p>
+<p>Scanner sc = new Scanner(System.in);<br />
+int T = sc.nextInt(); //testcase 의 갯수.<br />
+int[] A = new int[T] ,B = new int[T];//구하고자 하는 좌표</p>
+<p>for(int i=0; i&lt;T; i++){</p>
+<p>int x1,y1;<br />
+int x2,y2;<br />
+int x3,y3;//입력받은 좌표</p>
+<p>x1 = sc.nextInt();<br />
+y1 = sc.nextInt();</p>
+<p>x2 = sc.nextInt();<br />
+y2 = sc.nextInt();</p>
+<p>x3 = sc.nextInt();<br />
+y3 = sc.nextInt();</p>
+<p>if( (1 &lt;= x1) &amp;&amp; (x1 &lt;= 1000)<br />
+&amp;&amp; (1 &lt;= x2) &amp;&amp; (x2 &lt;= 1000)<br />
+&amp;&amp; (1 &lt;= x3) &amp;&amp; (x3 &lt;= 1000)<br />
+&amp;&amp; (1 &lt;= y1) &amp;&amp; (y1 &lt;= 1000)<br />
+&amp;&amp; (1 &lt;= y2) &amp;&amp; (y2 &lt;= 1000)<br />
+&amp;&amp; (1 &lt;= y3) &amp;&amp; (y3 &lt;= 1000)<br />
+){</p>
+<p>if( ((x1 == x2) &amp;&amp; (y1 == y2))<br />
+||((x2 == x3) &amp;&amp; (y2 == y3))<br />
+||((x1 == x3) &amp;&amp; (y1 == y3))<br />
+){</p>
+<p>}else{<br />
+//핵심로직 : (A,B)를 구해야 함.<br />
+//(x1 - x2) = (A - x3)<br />
+//(y1 - y2) = (B - y3)</p>
+<p>// A[i] = (Math.abs(x1 - x2) + x3);<br />
+// B[i] = (Math.abs(y1 - y2) + y3);</p>
+<p>if(x1 == x2){<br />
+A[i] = x3;<br />
+}else if(x1 == x3){<br />
+A[i] = x2;<br />
+}else{<br />
+A[i] = x1;<br />
+}</p>
+<p>if(y1 == y2){<br />
+B[i] = y3;<br />
+}else if(y1 == y3){<br />
+B[i] = y2;<br />
+}else{<br />
+B[i] = y1;<br />
+}<br />
+}</p>
+<p>}</p>
+<p>}</p>
+<p>for(int i=0; i&lt;T; i++){<br />
+if((1 &lt;= A[i]) &amp;&amp; (A[i] &lt;= 1000)<br />
+&amp;&amp; (1 &lt;= B[i]) &amp;&amp; (B[i] &lt;= 1000)){<br />
+System.out.print(A[i]);<br />
+System.out.print(&quot; &quot;);<br />
+System.out.print(B[i]);<br />
+System.out.println(&quot;&quot;);<br />
+}<br />
+}</p>
+<p>}<br />
+}</p>
+<p>[/code]</p>
+<table width="100%" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. <a href="https://www.evernote.com/getit?email_name=emailNote&amp;email_guid=2b5a75da-e41e-4acd-8b0b-34c378232c58&amp;email_link=download_app">Evernote를 다운로드하세요</a>.</td>
+</tr>
+</tbody>
+</table>

@@ -1,0 +1,84 @@
+---
+layout: post
+title: '1234'
+date: 
+type: post
+published: false
+status: draft
+categories:
+- "기타"
+tags: []
+meta:
+  _wpcom_is_markdown: '1'
+  _edit_last: '16999834'
+  geo_public: '0'
+author:
+  login: golch51
+  email: p2r64h32@gmail.com
+  display_name: golch51
+  first_name: ''
+  last_name: ''
+---
+<p>[code lang=text]<br />
+import java.util.Scanner;</p>
+<p>public class Main {<br />
+    public static void main(String[] args) {</p>
+<p>        Scanner sc = new Scanner(System.in);<br />
+        int T = sc.nextInt(); //testcase 의 갯수.<br />
+        int[] A = new int[T] ,B = new int[T];//구하고자 하는 좌표</p>
+<p>        for(int i=0; i&lt;T; i++){</p>
+<p>            int x1,y1;<br />
+            int x2,y2;<br />
+            int x3,y3;//입력받은 좌표 </p>
+<p>            x1 = sc.nextInt();<br />
+            y1 = sc.nextInt();</p>
+<p>            x2 = sc.nextInt();<br />
+            y2 = sc.nextInt();</p>
+<p>            x3 = sc.nextInt();<br />
+            y3 = sc.nextInt();</p>
+<p>            if( (1 &lt;= x1) &amp;&amp; (x1 &lt;= 1000)<br />
+                    &amp;&amp; (1 &lt;= x2) &amp;&amp; (x2 &lt;= 1000)<br />
+                    &amp;&amp; (1 &lt;= x3) &amp;&amp; (x3 &lt;= 1000)<br />
+                    &amp;&amp; (1 &lt;= y1) &amp;&amp; (y1 &lt;= 1000)<br />
+                    &amp;&amp; (1 &lt;= y2) &amp;&amp; (y2 &lt;= 1000)<br />
+                    &amp;&amp; (1 &lt;= y3) &amp;&amp; (y3 &lt;= 1000)<br />
+                    ){</p>
+<p>                if( ((x1 == x2) &amp;&amp; (y1 == y2))<br />
+                        ||((x2 == x3) &amp;&amp; (y2 == y3))<br />
+                        ||((x1 == x3) &amp;&amp; (y1 == y3))<br />
+                        ){</p>
+<p>                }else{<br />
+                    //핵심로직 : (A,B)를 구해야 함.<br />
+                    //(x1 - x2) = (A - x3)<br />
+                    //(y1 - y2) = (B - y3)</p>
+<p>//                    A[i] = (Math.abs(x1 - x2) + x3);<br />
+//                    B[i] = (Math.abs(y1 - y2) + y3);</p>
+<p>                    if(x1 == x2){<br />
+                        A[i] = x3;<br />
+                    }else if(x1 == x3){<br />
+                        A[i] = x2;<br />
+                    }else{<br />
+                        A[i] = x1;<br />
+                    }</p>
+<p>                    if(y1 == y2){<br />
+                        B[i] = y3;<br />
+                    }else if(y1 == y3){<br />
+                        B[i] = y2;<br />
+                    }else{<br />
+                        B[i] = y1;<br />
+                    }<br />
+                }</p>
+<p>            }</p>
+<p>        }</p>
+<p>        for(int i=0; i&lt;T; i++){<br />
+            if((1 &lt;= A[i]) &amp;&amp; (A[i] &lt;= 1000)<br />
+                    &amp;&amp; (1 &lt;= B[i]) &amp;&amp; (B[i] &lt;= 1000)){<br />
+                System.out.print(A[i]);<br />
+                System.out.print(&quot; &quot;);<br />
+                System.out.print(B[i]);<br />
+                System.out.println(&quot;&quot;);<br />
+            }<br />
+        }</p>
+<p>    }<br />
+}<br />
+[/code]</p>

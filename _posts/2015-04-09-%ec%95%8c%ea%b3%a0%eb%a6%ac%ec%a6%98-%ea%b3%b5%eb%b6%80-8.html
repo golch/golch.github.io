@@ -1,0 +1,109 @@
+---
+layout: post
+title: "알고리즘 공부 #8"
+date: 2015-04-09 17:57:19.000000000 +09:00
+type: post
+published: true
+status: publish
+categories:
+- "프로그래밍"
+tags:
+- algospot
+- featured
+- "알고리즘"
+- JAVA
+meta:
+  _publicize_job_id: '21930359960'
+  _oembed_578e79a554b2324227cc09e9122f28f5: "{{unknown}}"
+  _edit_last: '16999834'
+  geo_public: '0'
+  _wpcom_is_markdown: '1'
+author:
+  login: golch51
+  email: p2r64h32@gmail.com
+  display_name: golch51
+  first_name: ''
+  last_name: ''
+---
+<p>Algospot 문제 PICNIC</p>
+<p><a href="https://algospot.com/judge/problem/read/PICNIC">https://algospot.com/judge/problem/read/PICNIC</a></p>
+<p>이번에는 튜토리얼 문제가 아닌 '알고리즘 문제 해결 전략’ 이라는 책에 수록된 문제를 풀어보았다. 이 다음에 포스팅 하게 될 NQUEEN 이라는 문제를 풀다가 막혀서 한 단계 쉬운 비슷한 문제에 도전을 하게 된 것. 책의 해설도 필요한 상황이었고 이런 탐색, 경우의 수 류의 문제를 해결하는 능력을 좀더 키우기 위한 선택이었다.</p>
+<p>PICNIC(소풍) 문제는 아이들이 소풍을 가기 위해 짝을 짓는 경우의 수를 구하는 문제이다. 서로 친구인지 아닌지를 가늠하는 것이 포인트인데 이런 문제를 어떻게 풀어야 할지 책에 자세히 해설이 되어있다. 0번 아이부터 시작해서 친구인지 아닌지 검사하는 코드를 만들어야 한다. 이렇게 일일히 검사하는 것을 완전탐색 이라고 한다.</p>
+<p>책에 나와있는 풀이를 보고 문제를 해결하였는데, 완성된 코드를 보면서 배운 점들이 있다.<br />
+1. 친구인지 아닌지?를 판별하는 부분을 areFriends[][] 라는 boolean형의 2차원 배열로 만들었다. 이렇게 만들면 단순히 입력으로 받은 친구(여기서는 정수형)를 담아주기만 해도 다른 코드 없이 판별이 가능하다. 단, 순서를 항상 숫자가 작은 것을 앞에 넣어주어야 한다.<br />
+2. 처리하고 넘어간 아이는 taken[] 이라는 boolean형의 배열로 만들어서 처리한다. 이것 역시 책을 보기 전에는 생각해내지 못할만한 것이었다. 내가 혼자서 구현했다면 아마 좀더 무식한 방법으로 만들었을 것 같다.<br />
+3. 질문, 혹은 처리해야 하는 부분을 함수로 따로 구현한다. 이것은 java와 같은 OOP 언어라면 당연히 해야 할 일이다. 그러나 문제를 풀다보면 무식하게 main함수 안에 모든 로직을 우겨넣고 있는 나를 발견하게 된다 ㅠㅠ. 꼭 이 알고리즘 공부가 아니더라도 개발자로서 어떤 프로그램을 설계하고 코딩할 때 자연스럽게 함수를 만들고 필요하면 클래스도 만드는 능력이 시급하게 필요한듯...</p>
+<p>결국 알고리즘을 공부하기 위해서 이 책을 보고, 알고스팟 사이트에서 문제를 푸는 것들이 전반적인 개발자의 기초체력(?)에 큰 도움이 됨을 몸으로 체득하고 있다. 다음 문제는 제발 혼자서 풀 수 있기를….</p>
+<p><a href="http://golch51.files.wordpress.com/2015/04/e76dd4c0ae51c36d98aa3d807e559a28.png"><img src="{{ site.baseurl }}/assets/e76dd4c0ae51c36d98aa3d807e559a28.png" alt="" width="687" height="620" class="alignnone size-full wp-image-403" /></a></p>
+<p>암튼 책의 해설 덕분에 한방에 해결!ㅋㅋㅋ<br />
+다음에는 막혔던 NQUEEN 에 도전합니다.</p>
+<p>[code lang=text]<br />
+import java.util.Scanner;</p>
+<p>public class Main {</p>
+<p>    int n;<br />
+    boolean[][] areFriends = new boolean[10][10];<br />
+    //taken[i] = i 번째 학생이 짝을 이미 찾았으면 true, 아니면 false</p>
+<p>    int countPairings(boolean taken[],boolean[][] areFriends){<br />
+        //남은 학생들 중 가장 번호가 빠른 학생을 찾는다.<br />
+        int firstFree = -1;</p>
+<p>        for(int i=0; i&lt;n; ++i){<br />
+            if(!taken[i]){<br />
+                firstFree = i;<br />
+                break;<br />
+            }<br />
+        }</p>
+<p>        //기저 사례 : 모든 학생이 짝을 찾았으면 한 가지 방법을 찾았으니 종료한다.<br />
+        if(firstFree == -1){<br />
+            return 1;<br />
+        }</p>
+<p>        int ret = 0;</p>
+<p>        //이 학생과 짝지을 학생을 결정한다.<br />
+        for(int pairWith = firstFree + 1; pairWith &lt; n; ++pairWith){</p>
+<p>            if(!taken[pairWith] &amp;&amp; areFriends[firstFree][pairWith]){<br />
+                taken[firstFree] = taken[pairWith] = true;<br />
+                ret += countPairings(taken,areFriends);<br />
+                taken[firstFree] = taken[pairWith] = false;<br />
+            }<br />
+        }</p>
+<p>        return ret;<br />
+    }</p>
+<p>    public static void main(String[] args){<br />
+        Scanner sc = new Scanner(System.in);<br />
+        int T = sc.nextInt();<br />
+        int[] n = new int[T];//학생의 수.(2~10)<br />
+        int[] m = new int[T];//친구 쌍의 수.(0~ n(n-1)/2)<br />
+        int tmp = 0;<br />
+        int[] answer = new int[T];</p>
+<p>        if(T&lt;=50){<br />
+            for(int i=0; i&lt;T; i++){</p>
+<p>                n[i] = sc.nextInt();<br />
+                m[i] = sc.nextInt();</p>
+<p>                Main obj = new Main();<br />
+                boolean[] taken = new boolean[n[i]];<br />
+                obj.n = n[i];<br />
+                int friend1 = 0, friend2 = 0;</p>
+<p>                if( (2&lt;=n[i]) &amp;&amp; (n[i]&lt;=10) ){<br />
+                    if( (0&lt;=m[i]) &amp;&amp; (m[i] &lt;= n[i] * (n[i] -1) / 2) ){<br />
+                        for(int j=0; j friend2){<br />
+                                tmp = friend1;<br />
+                                friend1 = friend2;<br />
+                                friend2 = tmp;<br />
+                            }</p>
+<p>                            obj.areFriends[friend1][friend2] = true;<br />
+                        }<br />
+                        answer[i] = obj.countPairings(taken,obj.areFriends);<br />
+                    }<br />
+                }<br />
+            }</p>
+<p>            for(int i=0; i&lt;T; i++){<br />
+                System.out.println(answer[i]);<br />
+            }</p>
+<p>        }</p>
+<p>    }<br />
+}</p>
+<p>[/code]</p>
+<table cellspacing="0" cellpadding="0" width="100%">
+<tr>
+<td>이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. <a href="https://www.evernote.com/getit?email_name=emailNote&amp;email_guid=49ca88ff-a174-457e-8ce4-af2240358799&amp;email_link=download_app">Evernote를 다운로드하세요</a>.</td>
+</tr>
+</table>

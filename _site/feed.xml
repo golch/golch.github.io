@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
+    <title>골치의 블로그</title>
     <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 23 Sep 2016 13:03:13 +0900</pubDate>
-    <lastBuildDate>Fri, 23 Sep 2016 13:03:13 +0900</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <pubDate>Sun, 25 Sep 2016 22:37:12 +0900</pubDate>
+    <lastBuildDate>Sun, 25 Sep 2016 22:37:12 +0900</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -21,8 +21,8 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
 
@@ -35,6 +35,685 @@
         <category>jekyll</category>
         
         <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>[angularJS] 책 “프로 angularJS” 실습 #2</title>
+        <description>&lt;p&gt;지난 포스팅을 통해서 샘플 웹사이트가 구동 되었다.&lt;br /&gt;
+참고 : &lt;a href=&quot;https://golch51.wordpress.com/2016/04/27/angularjs-%ec%b1%85-%ed%94%84%eb%a1%9c-angularjs-%ec%8b%a4%ec%8a%b5-1/&quot;&gt;https://golch51.wordpress.com/2016/04/27/angularjs-책-프로-angularjs-실습-1/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이제 데이터를 입력해야 한다. 아래 그림처럼 속성을 생성하자.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://golch51.files.wordpress.com/2016/05/6b4634e2-694f-46d7-8c1a-67166d5dc589.png&quot;&gt;&lt;img src=&quot;/assets/6b4634e2-694f-46d7-8c1a-67166d5dc589.png&quot; alt=&quot;6B4634E2-694F-46D7-8C1A-67166D5DC589&quot; width=&quot;660&quot; height=&quot;508&quot; class=&quot;alignnone size-full wp-image-453&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;속성 생성 완료 후 좌측 상단의 DATA를 클릭하여 아래와 같이 데이터를 입력한다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://golch51.files.wordpress.com/2016/05/a43f3fe6-5231-495b-b2e9-45987bb3bb4a.png&quot;&gt;&lt;img src=&quot;/assets/a43f3fe6-5231-495b-b2e9-45987bb3bb4a.png&quot; alt=&quot;A43F3FE6-5231-495B-B2E9-45987BB3BB4A&quot; width=&quot;660&quot; height=&quot;413&quot; class=&quot;alignnone size-full wp-image-454&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;여기까지 입력이 완료되었다면, 이제 본격적으로 angularjs 어플리케이션을 만들어볼 차례이다. 먼저 디렉토리 구조부터 잡아보자. 이 구조는 책에 나온 그대로 만들어 보았다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://golch51.files.wordpress.com/2016/05/73f30c2e-634b-4b16-8ac4-b338393d0576.png&quot;&gt;&lt;img src=&quot;/assets/73f30c2e-634b-4b16-8ac4-b338393d0576.png&quot; alt=&quot;73F30C2E-634B-4B16-8AC4-B338393D0576&quot; width=&quot;434&quot; height=&quot;137&quot; class=&quot;alignnone size-full wp-image-455&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;angular-1.5.5 폴더는 angularjs를 다운로드 한 폴더이다. 본 프로젝트와는 관련이 없으니 무시해도 된다. bootstrap- 폴더 역시 무시해도 되는 폴더이다. 오른쪽에 하위폴더가 중요한데, angularjs 폴더는 지금부터 살펴볼 클라이언트 부분 파일들이 모여있다. node_server는 nodejs 서버가 있는 폴더이고, sportstore 는 deployd가 설치된 폴더이다. 책을 보고 나름의 구조를 만들어도 괜찮지만 혹시 이런것 때문에 진도를 못나가는 사람이 있을까봐 적어놓는다.&lt;/p&gt;
+&lt;p&gt;자 이제 nodejs 서버를 구동해야 한다. 먼저 아래와 같이 server.js 파일을 만들자.&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+var connect = require(&amp;#039;connect&amp;#039;),&lt;br /&gt;
+    serveStatic = require(&amp;#039;serve-static&amp;#039;);&lt;/p&gt;
+&lt;p&gt;var app = connect();&lt;/p&gt;
+&lt;p&gt;app.use(serveStatic(&amp;quot;../angularjs&amp;quot;));&lt;br /&gt;
+app.listen(5000);&lt;br /&gt;
+[/code]&lt;/p&gt;
+&lt;p&gt;이 파일은 node_server폴더에 넣는다. 그리고 터미널에서 node server.js 실행을 하면 서버가 구동된다.&lt;br /&gt;
+그리고 아래의 app.html 파일을 만든다. 이 파일은 angularjs 폴더에 넣어야 한다.&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+&amp;lt;!DOCTYPE html&amp;gt;&lt;br /&gt;
+&amp;lt;html ng-app=&amp;quot;sportsStore&amp;quot;&amp;gt;&lt;br /&gt;
+&amp;lt;head&amp;gt;&lt;br /&gt;
+  &amp;lt;title&amp;gt;SportsStore&amp;lt;/title&amp;gt;&lt;br /&gt;
+  &amp;lt;a href=&amp;quot;http://angular.js&amp;quot;&amp;gt;http://angular.js&amp;lt;/a&amp;gt;&lt;br /&gt;
+  &amp;lt;link href=&amp;quot;bootstrap.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;/&amp;gt;&lt;br /&gt;
+  &amp;lt;link href=&amp;quot;bootstrap-theme.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;/&amp;gt;&lt;/p&gt;
+&lt;p&gt;    angular.module(&amp;quot;sportsStore&amp;quot;,[]);&lt;/p&gt;
+&lt;p&gt;&amp;lt;/head&amp;gt;&lt;br /&gt;
+&amp;lt;body&amp;gt;&lt;br /&gt;
+  &amp;lt;div class=&amp;quot;navbar navbar-inverse&amp;quot;&amp;gt;&lt;br /&gt;
+    &amp;lt;a class=&amp;quot;navbar-brand&amp;quot; href=&amp;quot;#&amp;quot;&amp;gt;SPORTS STORE&amp;lt;/a&amp;gt;&lt;br /&gt;
+  &amp;lt;/div&amp;gt;&lt;br /&gt;
+  &amp;lt;div class=&amp;quot;panel panel-default row&amp;quot;&amp;gt;&lt;br /&gt;
+    &amp;lt;div class=&amp;quot;col-xs-3&amp;quot;&amp;gt;&lt;br /&gt;
+      Categories go here&lt;br /&gt;
+    &amp;lt;/div&amp;gt;&lt;br /&gt;
+    &amp;lt;div class=&amp;quot;col-xs-8&amp;quot;&amp;gt;&lt;br /&gt;
+      Products go here&lt;br /&gt;
+    &amp;lt;/div&amp;gt;&lt;br /&gt;
+  &amp;lt;/div&amp;gt;&lt;br /&gt;
+&amp;lt;/body&amp;gt;&lt;/p&gt;
+&lt;p&gt;&amp;lt;/html&amp;gt;&lt;br /&gt;
+[/code]&lt;/p&gt;
+&lt;p&gt;그리고 웹브라우저에서 loaclhost:5000/app.html 이 주소로 접속하면 아래와 같이 서버가 정상적으로 구동되는 것을 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://golch51.files.wordpress.com/2016/05/cfe60f64-00b0-4d4a-8a6c-e5e6781e50db.png&quot;&gt;&lt;img src=&quot;/assets/cfe60f64-00b0-4d4a-8a6c-e5e6781e50db.png&quot; alt=&quot;CFE60F64-00B0-4D4A-8A6C-E5E6781E50DB&quot; width=&quot;483&quot; height=&quot;175&quot; class=&quot;alignnone size-full wp-image-456&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;아직 책 뒷부분은 읽어보지 않아서 어떤 방식으로 진행될지 잘 모르겠으나, 아마도 우리의 프로젝트는 nodejs서버 위에 angularjs로 클라이언트를 만드는 것이고, deployd서버는 데이터를 제공하는 용도로만 사용할 것 같다.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 02 May 2016 16:21:07 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2016/05/02/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-2.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2016/05/02/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-2.html</guid>
+        
+        <category>adam freeman</category>
+        
+        <category>angularjs</category>
+        
+        <category>book review</category>
+        
+        <category>프로 angularjs</category>
+        
+        <category>javascript</category>
+        
+        
+        <category>프로그래밍</category>
+        
+      </item>
+    
+      <item>
+        <title>[angularJS] 책 &quot;프로 angularJS&quot; 실습 #1</title>
+        <description>&lt;p&gt;자바 스크립트 공부의 일환으로 클라이언트 프레임워크인 angularJS 를 공부하기로 했다. 몇달간 개발쪽에 손을 놓고있다가 새로 공부하는거라 두근두근하다. 이리저리 웹서핑을 해보았는데 그나마 유용한 사이트는 2군데 정도 있는듯 하다.&lt;br /&gt;
+https://www.angularjs.org/ (angularjs 공식사이트)&lt;br /&gt;
+http://www.w3schools.com/angular/default.asp (w3cscools.com)&lt;/p&gt;
+&lt;p&gt;좋기는 한데 둘다 영어라서 읽는데 너무 오래걸린다. 그래서 먼저 공부해본 친구에게 책을 추천받았다. &quot;프로 angularJS&quot;라는 책인데 저자인 애덤 프리먼은 이 책 이외에도 &quot;프로 Jquery&quot;, &quot;프로 asp.net&quot;등 여러 권을 집필한 사람이다. 이쪽으로는 꽤 유명한 분인듯..&lt;/p&gt;
+&lt;p&gt;이 포스팅은 책에 있는 실습을 직접 해보고 정리하는 목적으로 쓰여질 예정이다. 혹시라도 출판사나 저자에게 이 포스팅이 불이익이 된다면 언제든 삭제할 용의가 있다.&lt;/p&gt;
+&lt;p&gt;자 그럼 첫 번째로 개발환경을 셋팅해보자. 책에서 알려주는대로 제일 먼저 nodejs를 설치해야 한다. 서버를 nodejs로 만들건 아니지만, 자바스크립트 애플리케이션을 개발하는 범용적인 프레임워크 기능을 제공한다고 책에 나와있다. 참고로 초반에 나오는 javascript 전반적인 내용과 angularjs의 이론적인 부분은 스킵하였다. 본격적인 실습에 들어가는 6장의 내용부터 담는 것이니 앞부분이 궁금하다면 책을 사서 보는 것이 좋겠다.(출판업계의 발전을 위해서..)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;https://nodejs.org/ko/ 여기서 nodejs를 다운로드해서 설치하자(무려 한글번역). 버튼을 클릭하면 내 PC의 OS에 맞는 파일이 다운로드 되고, 설치하는 법은 따로 설명하지 않겠다.(이정도는 다 되겠지..)&lt;/li&gt;
+&lt;li&gt;다음은 angularjs 파일을 다운로드 한다. https://www.angularjs.org/&lt;br /&gt;
+주의할 점은 다운로드 창에서 stable 과 uncompressed 옵션을 반드시 체크하자. 다운로드 버튼을 누르면 브라우저의 새 탭에 js 파일이 열린다. 이 내용을 복사해서 새 파일(angular.js)로 저장하자.&lt;/li&gt;
+&lt;li&gt;deployd 설치 http://deployd.com/&lt;br /&gt;
+아래에서 본인 PC의 OS에 맞게 설치하면 된다.&lt;br /&gt;
+&lt;a href=&quot;https://golch51.files.wordpress.com/2016/04/ecbaa1ecb2981111.png&quot;&gt;&lt;img src=&quot;/assets/ecbaa1ecb2981111.png&quot; alt=&quot;캡처111&quot; width=&quot;660&quot; height=&quot;392&quot; class=&quot;alignnone size-full wp-image-447&quot; /&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;나는 Mac OS 니까 npm install 로 설치하고, mongoDB를 따로 설치하였다.&lt;/p&gt;
+&lt;p&gt;여기까지 설치하고 나서 작업할 디렉토리를 정한 후 터미널을 열고 그 디렉토리로 이동한다. 그리고&lt;br /&gt;
+dpd create sportsstore 를 입력한다.&lt;/p&gt;
+&lt;p&gt;그러면 폴더와 파일들이 막 생성되고, 다시 dpd -p 5500 sportsstore/app.dpd dashboard 이렇게 입력하면 로컬 서버가 시작된다.&lt;/p&gt;
+&lt;p&gt;브라우저에서 localhost:5500/dashboard/ 를 입력하면 아래 그림과 같은 웹 어플리케이션이 구동되는 것을 볼수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://golch51.files.wordpress.com/2016/04/pasted-image-at-2016_04_27-04_56-pm.png&quot;&gt;&lt;img src=&quot;/assets/pasted-image-at-2016_04_27-04_56-pm.png&quot; alt=&quot;Pasted image at 2016_04_27 04_56 PM&quot; width=&quot;660&quot; height=&quot;413&quot; class=&quot;alignnone size-full wp-image-449&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;휴. 정리하면서 하려니 진도도 느리고 힘들다. 오늘은 일단 여기까지...&lt;/p&gt;
+</description>
+        <pubDate>Wed, 27 Apr 2016 16:59:10 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%BB%B4%ED%93%A8%ED%84%B0/2016/04/27/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-1.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%BB%B4%ED%93%A8%ED%84%B0/2016/04/27/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-1.html</guid>
+        
+        <category>adam freeman</category>
+        
+        <category>angularjs</category>
+        
+        <category>book review</category>
+        
+        <category>프로 angularjs</category>
+        
+        <category>javascript</category>
+        
+        
+        <category>프로그래밍</category>
+        
+        <category>컴퓨터</category>
+        
+      </item>
+    
+      <item>
+        <title>밴드코로나 in JW메리어트 동대문</title>
+        <description>&lt;p&gt;와인앤버스커 밴드코로나 공연&lt;br /&gt;
+&lt;a href=&quot;https://golch51.files.wordpress.com/2016/04/dsc_0028.jpg&quot; rel=&quot;attachment wp-att-434&quot;&gt;&lt;img src=&quot;/assets/dsc_0028.jpg&quot; alt=&quot;DSC_0028&quot; width=&quot;474&quot; height=&quot;314&quot; class=&quot;alignnone size-full wp-image-434&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 01 Apr 2016 01:07:28 +0900</pubDate>
+        <link>http://yourdomain.com/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html</guid>
+        
+        
+        <category>사진</category>
+        
+      </item>
+    
+      <item>
+        <title>Ubuntu 14.04 설치함</title>
+        <description>&lt;p&gt;우분투를 설치했다!!!&lt;/p&gt;
+&lt;p&gt;업무용으로 이걸 사용할 수 있을지 아직 확신은 없어서 windows7 과 멀티부팅이 가능하도록 만들었다.&lt;/p&gt;
+&lt;p&gt;업무를 위한 JAVA 개발환경 설치시 windows 와 다르게 문제가 발생한 부분을 메모해 둔다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;maven 을 사용하고 있는데 maven resolving dependency 라고 뭔가를 계속 로딩하고 있다....... 왜 그런가 살펴보았더니 기본값으로 설정된 maven repository 위치에 디렉토리 및 파일 생성 권한이 없다. 리눅스 계열에서만 발생할 문제 ㅋㅋ. 그래서 maven repository 위치를 변경하니 해결됨!&lt;/li&gt;
+&lt;li&gt;lombok 플러그인 설치(IDE) ...... 실행하면 실행은 잘 되는데 자꾸 에러라고 빨갛게 표시가 된다. 다운받은 프로젝트 소스에 라이브러리로 lombok은 들어있는데 IDE 에 플러그인을 설치 안해서 발생하는 문제. 참고로 IDE는 intellij 를 사용중이다. 플러그인 설치하니 정상동작함.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;예전에 우분투 12.04 시절에 설치해서 사용해봤었는데 한글깨짐 및 IDE 문제점 등으로 도저히 못쓰겠다고 판단, 일주일만에 지운적이 있었다. 그런데 이번에 설치해보니 windows 대비 속도도 빠르고, (UI 에 대한 호불호는 나뉠 수 있겠다) 설치도 간편하고, 한글도 잘 지원되는 등 많이 개선되었다. 사용하는 어플리케이션 들이 멀티플랫폼을 많이 지원하는 것도 하나의 요인인듯 하다. 그래서 일부 MS-Office 가 필요한 상황을 제외하고 작업용도로 이번에 사용해보려고 한다.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 24 Dec 2015 14:15:54 +0900</pubDate>
+        <link>http://yourdomain.com/ubuntu/2015/12/24/ubuntu-14-04-ec-84-a4-ec-b9-98-ed-95-a8.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/ubuntu/2015/12/24/ubuntu-14-04-ec-84-a4-ec-b9-98-ed-95-a8.html</guid>
+        
+        <category>우분투</category>
+        
+        <category>JAVA</category>
+        
+        <category>linux</category>
+        
+        <category>lombok</category>
+        
+        <category>maven</category>
+        
+        <category>ubuntu</category>
+        
+        
+        <category>ubuntu</category>
+        
+      </item>
+    
+      <item>
+        <title>알고리즘 공부 #8</title>
+        <description>&lt;p&gt;Algospot 문제 PICNIC&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/PICNIC&quot;&gt;https://algospot.com/judge/problem/read/PICNIC&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이번에는 튜토리얼 문제가 아닌 '알고리즘 문제 해결 전략’ 이라는 책에 수록된 문제를 풀어보았다. 이 다음에 포스팅 하게 될 NQUEEN 이라는 문제를 풀다가 막혀서 한 단계 쉬운 비슷한 문제에 도전을 하게 된 것. 책의 해설도 필요한 상황이었고 이런 탐색, 경우의 수 류의 문제를 해결하는 능력을 좀더 키우기 위한 선택이었다.&lt;/p&gt;
+&lt;p&gt;PICNIC(소풍) 문제는 아이들이 소풍을 가기 위해 짝을 짓는 경우의 수를 구하는 문제이다. 서로 친구인지 아닌지를 가늠하는 것이 포인트인데 이런 문제를 어떻게 풀어야 할지 책에 자세히 해설이 되어있다. 0번 아이부터 시작해서 친구인지 아닌지 검사하는 코드를 만들어야 한다. 이렇게 일일히 검사하는 것을 완전탐색 이라고 한다.&lt;/p&gt;
+&lt;p&gt;책에 나와있는 풀이를 보고 문제를 해결하였는데, 완성된 코드를 보면서 배운 점들이 있다.&lt;br /&gt;
+1. 친구인지 아닌지?를 판별하는 부분을 areFriends[][] 라는 boolean형의 2차원 배열로 만들었다. 이렇게 만들면 단순히 입력으로 받은 친구(여기서는 정수형)를 담아주기만 해도 다른 코드 없이 판별이 가능하다. 단, 순서를 항상 숫자가 작은 것을 앞에 넣어주어야 한다.&lt;br /&gt;
+2. 처리하고 넘어간 아이는 taken[] 이라는 boolean형의 배열로 만들어서 처리한다. 이것 역시 책을 보기 전에는 생각해내지 못할만한 것이었다. 내가 혼자서 구현했다면 아마 좀더 무식한 방법으로 만들었을 것 같다.&lt;br /&gt;
+3. 질문, 혹은 처리해야 하는 부분을 함수로 따로 구현한다. 이것은 java와 같은 OOP 언어라면 당연히 해야 할 일이다. 그러나 문제를 풀다보면 무식하게 main함수 안에 모든 로직을 우겨넣고 있는 나를 발견하게 된다 ㅠㅠ. 꼭 이 알고리즘 공부가 아니더라도 개발자로서 어떤 프로그램을 설계하고 코딩할 때 자연스럽게 함수를 만들고 필요하면 클래스도 만드는 능력이 시급하게 필요한듯...&lt;/p&gt;
+&lt;p&gt;결국 알고리즘을 공부하기 위해서 이 책을 보고, 알고스팟 사이트에서 문제를 푸는 것들이 전반적인 개발자의 기초체력(?)에 큰 도움이 됨을 몸으로 체득하고 있다. 다음 문제는 제발 혼자서 풀 수 있기를….&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/e76dd4c0ae51c36d98aa3d807e559a28.png&quot;&gt;&lt;img src=&quot;/assets/e76dd4c0ae51c36d98aa3d807e559a28.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;620&quot; class=&quot;alignnone size-full wp-image-403&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;암튼 책의 해설 덕분에 한방에 해결!ㅋㅋㅋ&lt;br /&gt;
+다음에는 막혔던 NQUEEN 에 도전합니다.&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+import java.util.Scanner;&lt;/p&gt;
+&lt;p&gt;public class Main {&lt;/p&gt;
+&lt;p&gt;    int n;&lt;br /&gt;
+    boolean[][] areFriends = new boolean[10][10];&lt;br /&gt;
+    //taken[i] = i 번째 학생이 짝을 이미 찾았으면 true, 아니면 false&lt;/p&gt;
+&lt;p&gt;    int countPairings(boolean taken[],boolean[][] areFriends){&lt;br /&gt;
+        //남은 학생들 중 가장 번호가 빠른 학생을 찾는다.&lt;br /&gt;
+        int firstFree = -1;&lt;/p&gt;
+&lt;p&gt;        for(int i=0; i&amp;lt;n; ++i){&lt;br /&gt;
+            if(!taken[i]){&lt;br /&gt;
+                firstFree = i;&lt;br /&gt;
+                break;&lt;br /&gt;
+            }&lt;br /&gt;
+        }&lt;/p&gt;
+&lt;p&gt;        //기저 사례 : 모든 학생이 짝을 찾았으면 한 가지 방법을 찾았으니 종료한다.&lt;br /&gt;
+        if(firstFree == -1){&lt;br /&gt;
+            return 1;&lt;br /&gt;
+        }&lt;/p&gt;
+&lt;p&gt;        int ret = 0;&lt;/p&gt;
+&lt;p&gt;        //이 학생과 짝지을 학생을 결정한다.&lt;br /&gt;
+        for(int pairWith = firstFree + 1; pairWith &amp;lt; n; ++pairWith){&lt;/p&gt;
+&lt;p&gt;            if(!taken[pairWith] &amp;amp;&amp;amp; areFriends[firstFree][pairWith]){&lt;br /&gt;
+                taken[firstFree] = taken[pairWith] = true;&lt;br /&gt;
+                ret += countPairings(taken,areFriends);&lt;br /&gt;
+                taken[firstFree] = taken[pairWith] = false;&lt;br /&gt;
+            }&lt;br /&gt;
+        }&lt;/p&gt;
+&lt;p&gt;        return ret;&lt;br /&gt;
+    }&lt;/p&gt;
+&lt;p&gt;    public static void main(String[] args){&lt;br /&gt;
+        Scanner sc = new Scanner(System.in);&lt;br /&gt;
+        int T = sc.nextInt();&lt;br /&gt;
+        int[] n = new int[T];//학생의 수.(2~10)&lt;br /&gt;
+        int[] m = new int[T];//친구 쌍의 수.(0~ n(n-1)/2)&lt;br /&gt;
+        int tmp = 0;&lt;br /&gt;
+        int[] answer = new int[T];&lt;/p&gt;
+&lt;p&gt;        if(T&amp;lt;=50){&lt;br /&gt;
+            for(int i=0; i&amp;lt;T; i++){&lt;/p&gt;
+&lt;p&gt;                n[i] = sc.nextInt();&lt;br /&gt;
+                m[i] = sc.nextInt();&lt;/p&gt;
+&lt;p&gt;                Main obj = new Main();&lt;br /&gt;
+                boolean[] taken = new boolean[n[i]];&lt;br /&gt;
+                obj.n = n[i];&lt;br /&gt;
+                int friend1 = 0, friend2 = 0;&lt;/p&gt;
+&lt;p&gt;                if( (2&amp;lt;=n[i]) &amp;amp;&amp;amp; (n[i]&amp;lt;=10) ){&lt;br /&gt;
+                    if( (0&amp;lt;=m[i]) &amp;amp;&amp;amp; (m[i] &amp;lt;= n[i] * (n[i] -1) / 2) ){&lt;br /&gt;
+                        for(int j=0; j friend2){&lt;br /&gt;
+                                tmp = friend1;&lt;br /&gt;
+                                friend1 = friend2;&lt;br /&gt;
+                                friend2 = tmp;&lt;br /&gt;
+                            }&lt;/p&gt;
+&lt;p&gt;                            obj.areFriends[friend1][friend2] = true;&lt;br /&gt;
+                        }&lt;br /&gt;
+                        answer[i] = obj.countPairings(taken,obj.areFriends);&lt;br /&gt;
+                    }&lt;br /&gt;
+                }&lt;br /&gt;
+            }&lt;/p&gt;
+&lt;p&gt;            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+                System.out.println(answer[i]);&lt;br /&gt;
+            }&lt;/p&gt;
+&lt;p&gt;        }&lt;/p&gt;
+&lt;p&gt;    }&lt;br /&gt;
+}&lt;/p&gt;
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=49ca88ff-a174-457e-8ce4-af2240358799&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Thu, 09 Apr 2015 17:57:19 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/09/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-8.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/09/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-8.html</guid>
+        
+        <category>algospot</category>
+        
+        <category>featured</category>
+        
+        <category>알고리즘</category>
+        
+        <category>JAVA</category>
+        
+        
+        <category>프로그래밍</category>
+        
+      </item>
+    
+      <item>
+        <title>알고리즘 공부 #7</title>
+        <description>&lt;p&gt;Algospot 튜토리얼 문제 BRACKETS2&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/BRACKETS2&quot;&gt;https://algospot.com/judge/problem/read/BRACKETS2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;영어문제..ㄷㄷㄷ&lt;/p&gt;
+&lt;p&gt;Bracket. 괄호에 관련된 문제인가보다.&lt;br /&gt;
+Round brackets ()&lt;br /&gt;
+Curly brackets {}&lt;br /&gt;
+Square brackets []&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;모든 괄호는 항상 쌍으로 나온다.&lt;/li&gt;
+&lt;li&gt;열리는것 먼저, 닫히는것은 나중.&lt;/li&gt;
+&lt;li&gt;{(}) 이런 식으로는 되지 않는다. 열리면 일단 닫히고 다음 괄호가 와야 함.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;입,출력.&lt;br /&gt;
+1. 테스트케이스 (1&amp;lt;= T &amp;lt;=100)&lt;br /&gt;
+2. 입력은 괄호 문자열로 받고 최대 10000.&lt;br /&gt;
+3. 조건에 맞으면 YES 틀리면 NO를 출력한다.&lt;/p&gt;
+&lt;p&gt;이 문제는 ArrayList를 반드시 사용해야 한다. 단순 char배열은 중간 값을 지울 수가 없는데, 이 문제는 괄호가 짝을 찾은 경우 소거해가면서 풀어야 정상적인 로직을 만들 수 있다.&lt;/p&gt;
+&lt;p&gt;내가 만든 로직은 루프를 돌면서 각 char를 검사하고 () {} [] 가 있는 경우 이를 소거한다. 그리고 소거된 값으로 다시 루프를 돌아 소거하는 일을 반복한다. 만일 이 배열의 길이가 0이 되면 YES가 되고 이전 배열 길이에서 줄어들지 않았다면 NO가 되면서 루프를 종료한다.&lt;/p&gt;
+&lt;p&gt;꼼꼼히 짠다고 짰는데 그래도 버그가 생긴다 ㅠㅠ 역시 문서를 만들어놓고 코딩하는 습관을 들이는게 중요한 것 같다. 다음 문제때는 한번 간단한 문서를 만들어놓고 코딩을 해봐야겠다.&lt;br /&gt;
+&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/ae5097f988268e16324a9758b77dddf6.png&quot;&gt;&lt;img src=&quot;/assets/ae5097f988268e16324a9758b77dddf6.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;681&quot; class=&quot;alignnone size-full wp-image-397&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+import java.util.ArrayList;&lt;br /&gt;
+import java.util.List;&lt;br /&gt;
+import java.util.Scanner;&lt;/p&gt;
+&lt;p&gt;public class Main {&lt;/p&gt;
+&lt;p&gt;    public static char searchBracketPair(char originalBracket){&lt;br /&gt;
+        char pairBracket;&lt;/p&gt;
+&lt;p&gt;        if(originalBracket == &amp;#039;[&amp;#039;){&lt;br /&gt;
+            pairBracket = &amp;#039;]&amp;#039;;&lt;br /&gt;
+        }&lt;br /&gt;
+//      else if(originalBracket == &amp;#039;]&amp;#039;){&lt;br /&gt;
+//          pairBracket = &amp;#039;[&amp;#039;;&lt;br /&gt;
+//      }&lt;br /&gt;
+        else if(originalBracket == &amp;#039;(&amp;#039;){&lt;br /&gt;
+            pairBracket = &amp;#039;)&amp;#039;;&lt;br /&gt;
+        }&lt;br /&gt;
+//      else if(originalBracket == &amp;#039;)&amp;#039;){&lt;br /&gt;
+//          pairBracket = &amp;#039;(&amp;#039;;&lt;br /&gt;
+//      }&lt;br /&gt;
+        else if(originalBracket == &amp;#039;{&amp;#039;){&lt;br /&gt;
+            pairBracket = &amp;#039;}&amp;#039;;&lt;br /&gt;
+        }&lt;br /&gt;
+//      else if(originalBracket == &amp;#039;}&amp;#039;){&lt;br /&gt;
+//          pairBracket = &amp;#039;{&amp;#039;;&lt;br /&gt;
+//      }&lt;br /&gt;
+        else{&lt;br /&gt;
+            pairBracket = &amp;#039;*&amp;#039;;&lt;br /&gt;
+        }&lt;/p&gt;
+&lt;p&gt;        return pairBracket;&lt;br /&gt;
+    }&lt;/p&gt;
+&lt;p&gt;    //먼저 입력값이 짝수인지 확인. 홀수이면 그냥 끝.&lt;br /&gt;
+    //그리고 입력값 중에 괄호가 아닌애가 있는지 확인. 아니면 끝.&lt;br /&gt;
+    public static boolean isScannerValid(char[] scanner){&lt;br /&gt;
+        boolean returnValue = false;&lt;/p&gt;
+&lt;p&gt;        if(scanner.length%2 == 0){&lt;br /&gt;
+            for(int i=0; i&amp;lt;scanner.length; i++){&lt;br /&gt;
+                if((scanner[i] == &amp;#039;[&amp;#039;) || (scanner[i] == &amp;#039;]&amp;#039;)&lt;br /&gt;
+                        || (scanner[i] == &amp;#039;{&amp;#039;) || (scanner[i] == &amp;#039;}&amp;#039;)&lt;br /&gt;
+                        || (scanner[i] == &amp;#039;(&amp;#039;) || (scanner[i] == &amp;#039;)&amp;#039;)){&lt;br /&gt;
+                    returnValue = true;&lt;br /&gt;
+                }&lt;br /&gt;
+            }&lt;br /&gt;
+        }&lt;/p&gt;
+&lt;p&gt;        return returnValue;&lt;br /&gt;
+    }&lt;/p&gt;
+&lt;p&gt;    public static void main(String[] args) {&lt;/p&gt;
+&lt;p&gt;        Scanner sc = new Scanner(System.in);&lt;br /&gt;
+        int T = sc.nextInt(); //testcase 의 갯수.&lt;br /&gt;
+        String[] brackets = new String[T];&lt;br /&gt;
+        char[] elements = new char[10000];//10000 이상인지 확인. 아니면 끝.&lt;/p&gt;
+&lt;p&gt;        String[] printValue = new String[T];&lt;/p&gt;
+&lt;p&gt;        List&amp;lt;Character&amp;gt; eList = new ArrayList&amp;lt;Character&amp;gt;();&lt;br /&gt;
+        int count = 0;&lt;/p&gt;
+&lt;p&gt;        if((1 &amp;lt;= T) &amp;amp;&amp;amp; (T &amp;lt;= 100)){&lt;br /&gt;
+            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+                brackets[i] = sc.next();&lt;br /&gt;
+                elements = brackets[i].toCharArray();&lt;/p&gt;
+&lt;p&gt;                eList.clear();&lt;br /&gt;
+                count = 0;&lt;/p&gt;
+&lt;p&gt;                if(isScannerValid(elements)){&lt;/p&gt;
+&lt;p&gt;//                  System.out.println(&amp;quot;valid&amp;quot; + elements.length);&lt;/p&gt;
+&lt;p&gt;                    for(int j=0; j&amp;lt;elements.length; j++){&lt;br /&gt;
+                        eList.add(elements[j]);&lt;/p&gt;
+&lt;p&gt;//                      System.out.println(eList.get(j));&lt;br /&gt;
+                    }&lt;/p&gt;
+&lt;p&gt;//                  System.out.println(&amp;quot;1. &amp;quot;+eList.size());&lt;br /&gt;
+//                  System.out.println(&amp;quot;2. &amp;quot;+count);&lt;/p&gt;
+&lt;p&gt;                    //비교하기위한 로직.&lt;br /&gt;
+                    while((eList.size() != 0) &amp;amp;&amp;amp; (count != eList.size()) ){&lt;br /&gt;
+                        count = eList.size();&lt;/p&gt;
+&lt;p&gt;                        for(int j=0; j&amp;lt;eList.size()-1; j++){&lt;br /&gt;
+                            if(eList.get(j+1) == searchBracketPair(eList.get(j))){&lt;br /&gt;
+                                eList.remove(j);&lt;br /&gt;
+//                              System.out.println(&amp;quot;::: &amp;quot; + j + eList.toString());&lt;/p&gt;
+&lt;p&gt;                                eList.remove(j);&lt;br /&gt;
+//                              System.out.println(&amp;quot;::: &amp;quot;+eList.toString());&lt;br /&gt;
+                            }else{&lt;br /&gt;
+//                              System.out.println(&amp;quot;??????&amp;quot;);&lt;br /&gt;
+                            }&lt;br /&gt;
+                        }&lt;br /&gt;
+//                      System.out.println(eList.size());&lt;/p&gt;
+&lt;p&gt;                        if(eList.size() == 0){&lt;br /&gt;
+                            printValue[i] = &amp;quot;YES&amp;quot;;&lt;br /&gt;
+                        }else{&lt;br /&gt;
+                            printValue[i] = &amp;quot;NO&amp;quot;;&lt;br /&gt;
+                        }&lt;br /&gt;
+                    }&lt;/p&gt;
+&lt;p&gt;                }else{&lt;br /&gt;
+                    printValue[i] = &amp;quot;NO&amp;quot;;&lt;br /&gt;
+                }&lt;/p&gt;
+&lt;p&gt;            }&lt;/p&gt;
+&lt;p&gt;            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+                System.out.println(printValue[i]);&lt;br /&gt;
+            }&lt;br /&gt;
+        }&lt;br /&gt;
+    }&lt;br /&gt;
+}&lt;/p&gt;
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=f3474596-e623-472e-ac40-2b8cc9245958&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Fri, 03 Apr 2015 14:47:14 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/03/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-7.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/03/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-7.html</guid>
+        
+        <category>algospot</category>
+        
+        <category>featured</category>
+        
+        <category>알고리즘</category>
+        
+        <category>JAVA</category>
+        
+        
+        <category>프로그래밍</category>
+        
+      </item>
+    
+      <item>
+        <title>알고리즘 공부 #6</title>
+        <description>&lt;p&gt;Algospot 튜토리얼 문제 &lt;a href=&quot;https://algospot.com/judge/problem/read/XHAENEUNG&quot;&gt;XHAENEUNG&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/XHAENEUNG&quot;&gt;https://algospot.com/judge/problem/read/XHAENEUNG&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;사칙연산을 채점하는 프로그램 만들기. 단, 숫자는 입력/출력 모두 영어로 쓰여져 있고 답을 할 때 철자의 순서가 달라도 정답과 같은 철자 수를 가지고 있으면 정답으로 처리한다.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;테스트 케이스 T 의 제한은 없다.&lt;/li&gt;
+&lt;li&gt;문제에 사용할 수 있는 수는 0~10까지. 답이 0 미만이거나 10 초과인 숫자가 나오는 문제라면 무조건 오답처리 한다.&lt;/li&gt;
+&lt;li&gt;숫자와 연산기호는 공백으로 구분한다.&lt;/li&gt;
+&lt;li&gt;철자의 순서가 바뀌어도 개수가 같다면 정답으로 처리한다.&lt;/li&gt;
+&lt;li&gt;출력은 정답이면 “Yes” 오답이면 “No”를 출력한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;여기까지 써놓고 열심히 프로그램을 짰는데.. 결론부터 말하면 4번에서 좀 많이 헤멨다. 아무래도 나는 자료구조가 약한것 같군. char배열에서 같은 값이 있을 경우 하나씩 지우려고 했는데, 배열에서는 지울 수가 없더라… 그래서 ‘*’로 치환하여 해결함ㅋㅋ 꼼수 ㅋㅋㅋ&lt;br /&gt;
+이 부분(철자 바뀌어도 정답처리 해주는 부분)을 제외하고 나머지 부분은 특별히 어려운 부분은 없었다.&lt;/p&gt;
+&lt;p&gt;오답이 난건 테스트로 출력하는 문장을 주석처리 안해서 ㅠㅠ&lt;br /&gt;
+아므튼 이렇게 한문제 또 해결!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/5dd01308894c402427f9118bdc7cb9de.png&quot;&gt;&lt;img src=&quot;/assets/5dd01308894c402427f9118bdc7cb9de.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;682&quot; class=&quot;alignnone size-full wp-image-393&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+import java.util.Scanner;&lt;/p&gt;
+&lt;p&gt;public class Main {&lt;br /&gt;
+    public static void main(String[] args) {&lt;br /&gt;
+        Scanner sc = new Scanner(System.in);&lt;/p&gt;
+&lt;p&gt;        int T = sc.nextInt();&lt;br /&gt;
+        String[] ans = new String[T];//정답,오답을 구분 후 출력하기 위한 배열.&lt;br /&gt;
+        String[] element = new String[5];//각 숫자 및 연산기호를 처리하기 위한 배열.&lt;/p&gt;
+&lt;p&gt;        String[] engNum = {&amp;quot;zero&amp;quot;,&amp;quot;one&amp;quot;,&amp;quot;two&amp;quot;,&amp;quot;three&amp;quot;,&amp;quot;four&amp;quot;,&amp;quot;five&amp;quot;&lt;br /&gt;
+                ,&amp;quot;six&amp;quot;,&amp;quot;seven&amp;quot;,&amp;quot;eight&amp;quot;,&amp;quot;nine&amp;quot;,&amp;quot;ten&amp;quot;};&lt;br /&gt;
+        int[] num = {0,1,2,3,4,5,6,7,8,9,10};&lt;br /&gt;
+        int x = 0, y = 0;&lt;br /&gt;
+        int answer = 0;&lt;/p&gt;
+&lt;p&gt;        char[] elements = new char[10];&lt;br /&gt;
+        char[] answers = new char[10];&lt;/p&gt;
+&lt;p&gt;        int count=0;&lt;/p&gt;
+&lt;p&gt;        ///////////변수 선언.&lt;/p&gt;
+&lt;p&gt;        for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+            for(int j=0; j&amp;lt;5; j++){&lt;br /&gt;
+                element[j] = sc.next();&lt;br /&gt;
+//              System.out.println(&amp;quot;element[&amp;quot; +j+&amp;quot;]: &amp;quot;+element[j]);&lt;br /&gt;
+            }&lt;/p&gt;
+&lt;p&gt;//          for(int j=0; j&amp;lt;5; j++){&lt;br /&gt;
+                //element[0], element[2] 는 숫자.&lt;br /&gt;
+                for(int k=0; k&amp;lt;11; k++){&lt;br /&gt;
+                    if(element[0].equals(engNum[k])){&lt;br /&gt;
+                        x = num[k];&lt;br /&gt;
+//                      System.out.println(&amp;quot;x : &amp;quot;+ x);&lt;br /&gt;
+                    }&lt;br /&gt;
+                    if(element[2].equals(engNum[k])){&lt;br /&gt;
+                        y = num[k];&lt;br /&gt;
+//                      System.out.println(&amp;quot;y : &amp;quot;+ y);&lt;br /&gt;
+                    }&lt;br /&gt;
+                }&lt;/p&gt;
+&lt;p&gt;                //element[1] 은 연산자.&lt;br /&gt;
+                if(element[1].equals(&amp;quot;+&amp;quot;)){//+ 연산일 경우&lt;br /&gt;
+                    answer = x + y;&lt;br /&gt;
+                }else if(element[1].equals(&amp;quot;-&amp;quot;)){//- 연산일 경우&lt;br /&gt;
+                    answer = x - y;&lt;br /&gt;
+                }else{//* 연산일 경우&lt;br /&gt;
+                    answer = x * y;&lt;br /&gt;
+                }&lt;/p&gt;
+&lt;p&gt;                if((0 &amp;lt;= answer) &amp;amp;&amp;amp; (answer &amp;lt;= 10)){&lt;br /&gt;
+                    if(engNum[answer].equals(element[4])){&lt;br /&gt;
+                        ans[i] = &amp;quot;Yes&amp;quot;;&lt;br /&gt;
+                    }else{&lt;br /&gt;
+                        elements = element[4].toCharArray();&lt;br /&gt;
+                        answers = engNum[answer].toCharArray();&lt;/p&gt;
+&lt;p&gt;                        if(elements.length == answers.length){&lt;br /&gt;
+                            for(int a=0; a&amp;lt;elements.length; a++){&lt;br /&gt;
+                                //char 각각 비교하기.&lt;br /&gt;
+                                for(int b=0; b&amp;lt;answers.length; b++){&lt;br /&gt;
+                                    if(elements[a] == answers[b]){&lt;br /&gt;
+                                        elements[a] = &amp;#039;*&amp;#039;;&lt;br /&gt;
+                                        answers[b] = &amp;#039;#&amp;#039;;&lt;br /&gt;
+                                        count++;&lt;br /&gt;
+//                                      System.out.println(elements[a]);&lt;br /&gt;
+                                    }&lt;br /&gt;
+                                }&lt;br /&gt;
+                            }&lt;/p&gt;
+&lt;p&gt;                            if(count == elements.length){&lt;br /&gt;
+                                ans[i] = &amp;quot;Yes&amp;quot;;&lt;br /&gt;
+//                              System.out.println(count);&lt;br /&gt;
+                            }else{&lt;br /&gt;
+                                ans[i] = &amp;quot;No&amp;quot;;&lt;br /&gt;
+//                              System.out.println(count);&lt;br /&gt;
+                            }&lt;/p&gt;
+&lt;p&gt;                            count =0;&lt;/p&gt;
+&lt;p&gt;                        }else{&lt;br /&gt;
+                            ans[i] = &amp;quot;No&amp;quot;;&lt;br /&gt;
+                        }&lt;br /&gt;
+                    }&lt;br /&gt;
+//                  ans[i] = engNum[answer];&lt;br /&gt;
+//                  System.out.println(&amp;quot;ans : &amp;quot;+ answer);&lt;br /&gt;
+                }else{&lt;br /&gt;
+                    ans[i] = &amp;quot;No&amp;quot;;&lt;br /&gt;
+                }&lt;br /&gt;
+//          }&lt;/p&gt;
+&lt;p&gt;        }&lt;br /&gt;
+        for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+            System.out.println(ans[i]);&lt;br /&gt;
+        }&lt;/p&gt;
+&lt;p&gt;    }&lt;br /&gt;
+}&lt;/p&gt;
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=1049d900-abf7-4612-a854-8859bbf3b41a&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Thu, 02 Apr 2015 16:04:37 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/02/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-6.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/02/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-6.html</guid>
+        
+        <category>algospot</category>
+        
+        <category>featured</category>
+        
+        <category>알고리즘</category>
+        
+        <category>JAVA</category>
+        
+        
+        <category>프로그래밍</category>
+        
+      </item>
+    
+      <item>
+        <title>알고리즘 공부 #5</title>
+        <description>&lt;p&gt;Algospot 튜토리얼 문제 URI&lt;br /&gt;
+&lt;a href=&quot;https://algospot.com/judge/problem/read/URI&quot;&gt;https://algospot.com/judge/problem/read/URI&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;왕초보급은 이제 졸업하고 다음 단계로 올라왔다. 빨리 어려운 것도 풀어보고 싶지만 일단은 차근차근...&lt;br /&gt;
+이번 문제는 영어로 쓰여있어서 일단 문제 파악부터 해야한다.&lt;/p&gt;
+&lt;p&gt;음. 특수문자 %가 포함된 encoded string 을 진짜 특수문자로 치환하는 문제이다.&lt;br /&gt;
+1. 테스트케이스 T는 1~100 사이의 정수이다.&lt;br /&gt;
+2. 입력값(percent-encoded URI)의 길이는 최대 80 이다.&lt;br /&gt;
+3. 입력되는 URI 를 decode 하시오.&lt;/p&gt;
+&lt;p&gt;음.. 잘 만든 것 같은데 런타임 오류 ㅠㅠ&lt;br /&gt;
+폭풍 검색 해보니 java에서 String의 replace 메소드 사용할 때 ‘$’ 얘가 문제가 된다. ‘\$'로 처리해야 정상적으로 동작함.&lt;br /&gt;
+이렇게 수정하고 다시 제출했는데 이번엔 오답!!!!&lt;/p&gt;
+&lt;p&gt;ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ&lt;br /&gt;
+결국 범인은 ‘%’ 였다. 쉬운듯 안쉬운 문제 ㅠㅠ&lt;br /&gt;
+예를 들어서 %2525 이런 입력이 들어왔을때 %25는 %로 치환되므로 %25 이렇게 출력되는 것이 맞다. 출제자의 의도는 한번만 치환과정을 거쳐야 함. 그런데 치환하는 코드를&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+uri[i] = uri[i].replaceAll(&amp;quot;%25&amp;quot;, &amp;quot;%&amp;quot;);&lt;br /&gt;
+uri[i] = uri[i].replaceAll(&amp;quot;%20&amp;quot;, &amp;quot; &amp;quot;);&lt;br /&gt;
+uri[i] = uri[i].replaceAll(&amp;quot;%21&amp;quot;, &amp;quot;!&amp;quot;);&lt;br /&gt;
+uri[i] = uri[i].replaceAll(&amp;quot;%24&amp;quot;, &amp;quot;$&amp;quot;);&lt;br /&gt;
+[/code]&lt;/p&gt;
+&lt;p&gt;이렇게 짜면 %25 처리 후 다른 코드가 처리되어 두번 처리되는 경우가 있다. 결국 %25 치환코드를 맨 아랫줄로 내려서 해결!&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/8aa007859dbf5133565ebd2e0520a3ae.png&quot;&gt;&lt;img src=&quot;/assets/8aa007859dbf5133565ebd2e0520a3ae.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;694&quot; class=&quot;alignnone size-full wp-image-388&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;3번이나 틀림ㅋㅋㅋㅋ&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+import java.util.Scanner;&lt;/p&gt;
+&lt;p&gt;public class Main {&lt;br /&gt;
+    public static void main(String[] args) {&lt;br /&gt;
+        Scanner sc = new Scanner(System.in);&lt;/p&gt;
+&lt;p&gt;        int T = sc.nextInt();&lt;br /&gt;
+        String[] uri = new String[T];&lt;/p&gt;
+&lt;p&gt;        if(( 1&amp;lt;=T ) &amp;amp;&amp;amp; ( T&amp;lt;=100 )){//T는 1~100 사이의 정수.&lt;br /&gt;
+            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+                uri[i] = sc.next();&lt;/p&gt;
+&lt;p&gt;                if((0 &amp;lt; uri[i].length()) &amp;amp;&amp;amp; (uri[i].length() &amp;lt;= 80)){&lt;/p&gt;
+&lt;p&gt;                    uri[i] = uri[i].replaceAll(&amp;quot;%20&amp;quot;, &amp;quot; &amp;quot;);&lt;br /&gt;
+                    uri[i] = uri[i].replaceAll(&amp;quot;%21&amp;quot;, &amp;quot;!&amp;quot;);&lt;br /&gt;
+                    uri[i] = uri[i].replaceAll(&amp;quot;%24&amp;quot;, &amp;quot;\\$&amp;quot;);&lt;br /&gt;
+                    uri[i] = uri[i].replaceAll(&amp;quot;%28&amp;quot;, &amp;quot;(&amp;quot;);&lt;br /&gt;
+                    uri[i] = uri[i].replaceAll(&amp;quot;%29&amp;quot;, &amp;quot;)&amp;quot;);&lt;br /&gt;
+                    uri[i] = uri[i].replaceAll(&amp;quot;%2a&amp;quot;, &amp;quot;*&amp;quot;);&lt;br /&gt;
+                    uri[i] = uri[i].replaceAll(&amp;quot;%25&amp;quot;, &amp;quot;%&amp;quot;);&lt;br /&gt;
+                }&lt;/p&gt;
+&lt;p&gt;            }&lt;/p&gt;
+&lt;p&gt;            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+                System.out.println(uri[i]);&lt;br /&gt;
+            }&lt;br /&gt;
+        }&lt;br /&gt;
+    }&lt;br /&gt;
+}&lt;/p&gt;
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=68a8bf43-ba34-433f-87bb-212370264a3b&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Wed, 01 Apr 2015 13:02:58 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-5.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-5.html</guid>
+        
+        <category>algospot</category>
+        
+        <category>알고리즘</category>
+        
+        <category>JAVA</category>
+        
+        
+        <category>프로그래밍</category>
+        
+      </item>
+    
+      <item>
+        <title>알고리즘 공부 #4</title>
+        <description>&lt;p&gt;Algospot 튜토리얼 문제 HOTSUMMER&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/HOTSUMMER&quot;&gt;https://algospot.com/judge/problem/read/HOTSUMMER&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;이번엔 왠지 간단할 것 같다.&lt;br /&gt;
+즉, 목표 전기 사용량을 입력받고 9시부터 18시까지의 사용량을 모두 더해서 목표보다 큰지 작은지를 판별하면 된다. 여기까지만 하고 튜토리얼은 졸업하고 다른 문제를 풀어봐야할듯ㅋㅋ&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;건물 개수는 T개. 제한은 없음&lt;/li&gt;
+&lt;li&gt;목표 전기 사용량을 입력값으로 받음.&lt;/li&gt;
+&lt;li&gt;9시~18시 까지 총 9개의 숫자를 입력값으로 받음. 공백으로 구분.&lt;/li&gt;
+&lt;li&gt;전력사용량은 모두 0~1000 사이의 정수.&lt;/li&gt;
+&lt;li&gt;전체 사용량의 합이 목표 이하이면 “YES”, 그렇지 못하면 “NO”를 출력한다.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/a32c70c7d271d5cb07be76a9b991b861.png&quot;&gt;&lt;img src=&quot;/assets/a32c70c7d271d5cb07be76a9b991b861.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;676&quot; class=&quot;alignnone size-full wp-image-384&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[code lang=text]&lt;br /&gt;
+import java.util.Scanner;&lt;/p&gt;
+&lt;p&gt;public class Main {&lt;br /&gt;
+    public static void main(String[] args) {&lt;/p&gt;
+&lt;p&gt;        Scanner sc = new Scanner(System.in);&lt;br /&gt;
+        int T = sc.nextInt();&lt;/p&gt;
+&lt;p&gt;        int[] electricGoal = new int[T];&lt;br /&gt;
+        int[] A09 = new int[T];&lt;br /&gt;
+        int[] A10 = new int[T];&lt;br /&gt;
+        int[] A11 = new int[T];&lt;br /&gt;
+        int[] A12 = new int[T];&lt;br /&gt;
+        int[] A13 = new int[T];&lt;br /&gt;
+        int[] A14 = new int[T];&lt;br /&gt;
+        int[] A15 = new int[T];&lt;br /&gt;
+        int[] A16 = new int[T];&lt;br /&gt;
+        int[] A17 = new int[T];&lt;/p&gt;
+&lt;p&gt;        int[] sum = new int[T];&lt;/p&gt;
+&lt;p&gt;        for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+            electricGoal[i] = sc.nextInt();&lt;/p&gt;
+&lt;p&gt;            A09[i] = sc.nextInt();&lt;br /&gt;
+            A10[i] = sc.nextInt();&lt;br /&gt;
+            A11[i] = sc.nextInt();&lt;br /&gt;
+            A12[i] = sc.nextInt();&lt;br /&gt;
+            A13[i] = sc.nextInt();&lt;br /&gt;
+            A14[i] = sc.nextInt();&lt;br /&gt;
+            A15[i] = sc.nextInt();&lt;br /&gt;
+            A16[i] = sc.nextInt();&lt;br /&gt;
+            A17[i] = sc.nextInt();&lt;/p&gt;
+&lt;p&gt;            sum[i] = A09[i] +A10[i] +A11[i] +A12[i] +A13[i] +A14[i] +A15[i] +A16[i] +A17[i];&lt;/p&gt;
+&lt;p&gt;        }&lt;/p&gt;
+&lt;p&gt;        for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
+            if(electricGoal[i] &amp;gt;= sum[i]){&lt;br /&gt;
+                System.out.println(&amp;quot;YES&amp;quot;);&lt;br /&gt;
+            }else{&lt;br /&gt;
+                System.out.println(&amp;quot;NO&amp;quot;);&lt;br /&gt;
+            }&lt;br /&gt;
+        }&lt;br /&gt;
+    }&lt;br /&gt;
+}&lt;/p&gt;
+&lt;p&gt;[/code]&lt;/p&gt;
+&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=7b7bb9da-a9a4-4f00-a8f4-3439801c9582&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</description>
+        <pubDate>Wed, 01 Apr 2015 11:49:39 +0900</pubDate>
+        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-4.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-4.html</guid>
+        
+        <category>algospot</category>
+        
+        <category>알고리즘</category>
+        
+        <category>JAVA</category>
+        
+        
+        <category>프로그래밍</category>
         
       </item>
     

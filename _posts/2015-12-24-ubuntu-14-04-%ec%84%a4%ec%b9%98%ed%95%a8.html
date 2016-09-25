@@ -1,0 +1,37 @@
+---
+layout: post
+title: Ubuntu 14.04 설치함
+date: 2015-12-24 14:15:54.000000000 +09:00
+type: post
+published: true
+status: publish
+categories:
+- ubuntu
+tags:
+- "우분투"
+- JAVA
+- linux
+- lombok
+- maven
+- ubuntu
+meta:
+  _wpcom_is_markdown: '1'
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '18078876131'
+author:
+  login: golch51
+  email: p2r64h32@gmail.com
+  display_name: golch51
+  first_name: ''
+  last_name: ''
+---
+<p>우분투를 설치했다!!!</p>
+<p>업무용으로 이걸 사용할 수 있을지 아직 확신은 없어서 windows7 과 멀티부팅이 가능하도록 만들었다.</p>
+<p>업무를 위한 JAVA 개발환경 설치시 windows 와 다르게 문제가 발생한 부분을 메모해 둔다.</p>
+<ol>
+<li>maven 을 사용하고 있는데 maven resolving dependency 라고 뭔가를 계속 로딩하고 있다....... 왜 그런가 살펴보았더니 기본값으로 설정된 maven repository 위치에 디렉토리 및 파일 생성 권한이 없다. 리눅스 계열에서만 발생할 문제 ㅋㅋ. 그래서 maven repository 위치를 변경하니 해결됨!</li>
+<li>lombok 플러그인 설치(IDE) ...... 실행하면 실행은 잘 되는데 자꾸 에러라고 빨갛게 표시가 된다. 다운받은 프로젝트 소스에 라이브러리로 lombok은 들어있는데 IDE 에 플러그인을 설치 안해서 발생하는 문제. 참고로 IDE는 intellij 를 사용중이다. 플러그인 설치하니 정상동작함.</li>
+</ol>
+<p>&nbsp;</p>
+<p>예전에 우분투 12.04 시절에 설치해서 사용해봤었는데 한글깨짐 및 IDE 문제점 등으로 도저히 못쓰겠다고 판단, 일주일만에 지운적이 있었다. 그런데 이번에 설치해보니 windows 대비 속도도 빠르고, (UI 에 대한 호불호는 나뉠 수 있겠다) 설치도 간편하고, 한글도 잘 지원되는 등 많이 개선되었다. 사용하는 어플리케이션 들이 멀티플랫폼을 많이 지원하는 것도 하나의 요인인듯 하다. 그래서 일부 MS-Office 가 필요한 상황을 제외하고 작업용도로 이번에 사용해보려고 한다.</p>

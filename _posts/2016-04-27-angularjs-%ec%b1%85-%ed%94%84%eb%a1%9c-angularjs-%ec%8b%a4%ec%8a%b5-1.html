@@ -1,0 +1,50 @@
+---
+layout: post
+title: '[angularJS] 책 "프로 angularJS" 실습 #1'
+date: 2016-04-27 16:59:10.000000000 +09:00
+type: post
+published: true
+status: publish
+categories:
+- "프로그래밍"
+- "컴퓨터"
+tags:
+- adam freeman
+- angularjs
+- book review
+- "프로 angularjs"
+- javascript
+meta:
+  _wpcom_is_markdown: '1'
+  _edit_last: '16999834'
+  _thumbnail_id: '445'
+  geo_public: '0'
+  _publicize_job_id: '22213202180'
+author:
+  login: golch51
+  email: p2r64h32@gmail.com
+  display_name: golch51
+  first_name: ''
+  last_name: ''
+---
+<p>자바 스크립트 공부의 일환으로 클라이언트 프레임워크인 angularJS 를 공부하기로 했다. 몇달간 개발쪽에 손을 놓고있다가 새로 공부하는거라 두근두근하다. 이리저리 웹서핑을 해보았는데 그나마 유용한 사이트는 2군데 정도 있는듯 하다.<br />
+https://www.angularjs.org/ (angularjs 공식사이트)<br />
+http://www.w3schools.com/angular/default.asp (w3cscools.com)</p>
+<p>좋기는 한데 둘다 영어라서 읽는데 너무 오래걸린다. 그래서 먼저 공부해본 친구에게 책을 추천받았다. "프로 angularJS"라는 책인데 저자인 애덤 프리먼은 이 책 이외에도 "프로 Jquery", "프로 asp.net"등 여러 권을 집필한 사람이다. 이쪽으로는 꽤 유명한 분인듯..</p>
+<p>이 포스팅은 책에 있는 실습을 직접 해보고 정리하는 목적으로 쓰여질 예정이다. 혹시라도 출판사나 저자에게 이 포스팅이 불이익이 된다면 언제든 삭제할 용의가 있다.</p>
+<p>자 그럼 첫 번째로 개발환경을 셋팅해보자. 책에서 알려주는대로 제일 먼저 nodejs를 설치해야 한다. 서버를 nodejs로 만들건 아니지만, 자바스크립트 애플리케이션을 개발하는 범용적인 프레임워크 기능을 제공한다고 책에 나와있다. 참고로 초반에 나오는 javascript 전반적인 내용과 angularjs의 이론적인 부분은 스킵하였다. 본격적인 실습에 들어가는 6장의 내용부터 담는 것이니 앞부분이 궁금하다면 책을 사서 보는 것이 좋겠다.(출판업계의 발전을 위해서..)</p>
+<ol>
+<li>https://nodejs.org/ko/ 여기서 nodejs를 다운로드해서 설치하자(무려 한글번역). 버튼을 클릭하면 내 PC의 OS에 맞는 파일이 다운로드 되고, 설치하는 법은 따로 설명하지 않겠다.(이정도는 다 되겠지..)</li>
+<li>다음은 angularjs 파일을 다운로드 한다. https://www.angularjs.org/<br />
+주의할 점은 다운로드 창에서 stable 과 uncompressed 옵션을 반드시 체크하자. 다운로드 버튼을 누르면 브라우저의 새 탭에 js 파일이 열린다. 이 내용을 복사해서 새 파일(angular.js)로 저장하자.</li>
+<li>deployd 설치 http://deployd.com/<br />
+아래에서 본인 PC의 OS에 맞게 설치하면 된다.<br />
+<a href="https://golch51.files.wordpress.com/2016/04/ecbaa1ecb2981111.png"><img src="{{ site.baseurl }}/assets/ecbaa1ecb2981111.png" alt="캡처111" width="660" height="392" class="alignnone size-full wp-image-447" /></a></li>
+</ol>
+<p>나는 Mac OS 니까 npm install 로 설치하고, mongoDB를 따로 설치하였다.</p>
+<p>여기까지 설치하고 나서 작업할 디렉토리를 정한 후 터미널을 열고 그 디렉토리로 이동한다. 그리고<br />
+dpd create sportsstore 를 입력한다.</p>
+<p>그러면 폴더와 파일들이 막 생성되고, 다시 dpd -p 5500 sportsstore/app.dpd dashboard 이렇게 입력하면 로컬 서버가 시작된다.</p>
+<p>브라우저에서 localhost:5500/dashboard/ 를 입력하면 아래 그림과 같은 웹 어플리케이션이 구동되는 것을 볼수 있다.</p>
+<p><a href="https://golch51.files.wordpress.com/2016/04/pasted-image-at-2016_04_27-04_56-pm.png"><img src="{{ site.baseurl }}/assets/pasted-image-at-2016_04_27-04_56-pm.png" alt="Pasted image at 2016_04_27 04_56 PM" width="660" height="413" class="alignnone size-full wp-image-449" /></a></p>
+<p>휴. 정리하면서 하려니 진도도 느리고 힘들다. 오늘은 일단 여기까지...</p>

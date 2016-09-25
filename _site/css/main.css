@@ -276,6 +276,8 @@ pre {
     margin-bottom: 30px; }
 
 .post-meta {
+  /*20160925 wordpress.com에서 가져온 포스팅에 meta가 노출되어 작성.*/
+  display:none;
   font-size: 14px;
   color: #828282; }
 

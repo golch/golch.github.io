@@ -1,0 +1,55 @@
+---
+layout: post
+title: "[Java] 오버로딩 과 오버라이딩."
+date: 
+type: post
+published: false
+status: draft
+categories:
+- "기타"
+tags: []
+meta:
+  blogger_blog: golch51.blogspot.com
+  blogger_author: Golch
+  blogger_fc9643497e77fbdea157f498c59bd6bb_permalink: '5024401146616954294'
+  _edit_last: '16999834'
+author:
+  login: golch51
+  email: p2r64h32@gmail.com
+  display_name: golch51
+  first_name: ''
+  last_name: ''
+---
+<p>나는 웹개발자다.<br />물론 이제 고작 2년차인 초보이다.<br />그래도 JAVA를 만 1년 넘도록 배우고 사용했고, 스스로 평균정도의 실력은 가지고 있다고 믿었었다.</p>
+<p>어제 그 믿음이 무참히 깨지기 전까지는...<br />어제 회사 관련해서 JAVA 시험을 보게 되었다.<br />난이도가 쉽고 어렵고를 떠나서 "아는건 맞추자!!" 라는 다짐을 하면서 들어갔다.</p>
+<p>난데없는 안드로이드 문제가 나와서 조금 당황하긴 했지만.. 그래도 비교적 잘 나가고 있었다.</p>
+<p>바로 그 때..</p>
+<p>
+<div class="separator" style="clear:both;text-align:center;"><a href="http://golch51.files.wordpress.com/2012/05/5f455-java-evil-edition.png" style="margin-left:1em;margin-right:1em;"><img border="0" src="{{ site.baseurl }}/assets/5f455-java-evil-edition.png?w=186" height="400" width="247" /></a></div>
+<div style="text-align:center;"><b><span style="color:blue;"></span></b></div>
+<p>음... 분명히 배웠는데... 학교에서도 배우고... 아 오버라이딩이랑 오버로딩이랑 있었는데.. 아우 헷갈려!!!!</p>
+<p>멍청하게도 저 문제에 대한 답을 하지 못하고 말았다.<br />그래서 거의 만 1년만에 구석에서 잠자던 "자바의정석" 책을 펼쳐들었다.<br />이렇게 공개적인 글로 쓴다는 것이 제 살 깎아먹기 일지도 모르지만, 제대로 기억해서 다음에 다시는 헷갈리지 않기위한.. 장치라고 생각해주면 고맙겠다.</p>
+<p>1. 메서드 오버로딩</p>
+<p>자바에는 메서드라는 녀석이 있다.<br />아래 그림과 같이 메서드는 파라미터(매개변수)와 리턴 값을 가진다.</p>
+<div class="separator" style="clear:both;text-align:center;"><a href="http://golch51.files.wordpress.com/2012/05/776c6-e18485e185b5e18490e185a5e186abe1848be185b3e186afe18489e185a1e1848be185ade186bce18492e185a1e186abe1848ee185aee186afe18485e185a7e18.png" style="margin-left:1em;margin-right:1em;"><img border="0" src="{{ site.baseurl }}/assets/776c6-e18485e185b5e18490e185a5e186abe1848be185b3e186afe18489e185a1e1848be185ade186bce18492e185a1e186abe1848ee185aee186afe18485e185a7e18.png?w=300" height="528" width="640" /></a></div>
+<div class="separator" style="clear:both;text-align:center;"></div>
+<div class="separator" style="clear:both;text-align:center;"></div>
+<div style="text-align:center;"><span style="color:blue;"></span></div>
+<p>메서드 오버로딩은 매개변수와 깊은 관련이 있다. 리턴 값과는 전혀 연관이 없음을 알아두길 바란다.</p>
+<p>위 예시 코드에서 보면 매개변수가 (int a, int b) 두 개임을 알 수 있다.<br />그런데 나는 똑같은 기능(Add)을 매개변수 3개를 받아서 사용하고 싶다.<br />보통 이런 경우에는 메서드의 이름을 다르게 만든다.<br />그러나 같은 기능을 하는 메서드라면 Add 라는 이름으로 매개변수의 갯수, 자료형만 바꿔서 만들 수 있다.<br />코드는 아래와 같이 될 것이다.</p>
+<p><span style="font-size:large;"><span style="color:blue;">static int</span> Add(<span style="color:blue;">int</span> a, <span style="color:blue;">int</span> b, <span style="color:blue;">int</span> c)</span><br /><span style="font-size:large;">{</span><br /><span style="font-size:large;">     <span style="color:blue;">return</span> a + b + c;</span><br /><span style="font-size:large;">}</span></p>
+<p>이렇게 같은 이름의 메서드를 매개변수만 바꿔서 여러 개 만드는 것을 메서드 오버로딩이라고 한다.<br />어느 Java 책에나 나오는 전형적인 예시로는 println 메서드가 있다.<br />String, int, double ...... 등 여러 자료형이 있는데 이를 콘솔창에 나타낼 때에는 println 이라는 한 가지 이름의 메서드를 사용한다.<br />요 녀석이 사실은 오버로딩 된 메서드이다.</p>
+<p>2. 오버라이딩</p>
+<p>오버라이딩은 상속과 깊은 관계가 있다.<br />부모 클래스로부터 상속받은 메서드의 내용을 자식 클래스에서 변경하는 것을 오버라이딩이라고 한다.</p>
+<p>가령, 위 그림의 코드를 class A 라고 가정하고 그 자식 클래스 B 를 만들어서 오버라이딩을 해보면 이렇게 될 것이다.</p>
+<p><span style="font-size:large;"><span style="color:blue;">class</span> B <span style="color:blue;">extends</span> A {</span></p>
+<p><span style="font-size:large;"><span style="color:blue;">    static int</span> Add(<span style="color:blue;">int</span> a, <span style="color:blue;">int</span> b)</span><br /><span style="font-size:large;">    {</span><br /><span style="font-size:large;">         <span style="color:blue;">String</span> formula;</span><br /><span style="font-size:large;">         </span><span style="font-size:large;">formula</span><span style="font-size:large;"> = "a + b = ";</span><br /><span style="font-size:large;"><br /></span><span style="font-size:large;">         <span style="color:blue;">int</span> sum;</span><br /><span style="font-size:large;">         sum = a + b;</span><br /><span style="font-size:large;"><span style="color:blue;">         return</span> formula + sum;</span><br /><span style="font-size:large;">    }</span><span style="font-size:large;"><span style="color:blue;">    </span></span><br /><span style="font-size:large;"><span style="color:blue;"><br /></span></span><span style="font-size:large;"><span style="color:blue;">    static int</span> Add(<span style="color:blue;">int</span> a, <span style="color:blue;">int</span> b, <span style="color:blue;">int</span> c)</span><br /><span style="font-size:large;">    {</span><span style="font-size:large;">         </span></p>
+<p><span style="font-size:large;"><span style="color:blue;">         String</span> formula;</span><br /><span style="font-size:large;">         </span><span style="font-size:large;">formula</span><span style="font-size:large;"> = "a + b + c = ";</span><br /><span style="font-size:large;"><br /></span><span style="font-size:large;">         <span style="color:blue;">int</span> sum;</span><br /><span style="font-size:large;">         sum = a + b + c;</span><br /><span style="font-size:large;"><span style="color:blue;">         return</span> formula + sum;</span></p>
+<p><span style="font-size:large;">    }</span><br /><span style="font-size:large;"><br /></span><span style="font-size:large;">    <span style="color:blue;">static void</span> main(){</span><br /><span style="font-size:large;">        <span style="color:blue;">int</span> num;</span><br /><span style="font-size:large;">        num = Add(10,20);</span><br /><span style="font-size:large;">    }</span></p>
+<p><span style="font-size:large;">}</span></p>
+<p>더한 값 앞에 식을 보여주는 메서드로 내용을 추가하였다.<br />요 녀석이 오버라이딩이다.</p>
+<p>3. 오버로딩과 오버라이딩의 차이점</p>
+<p>오버로딩 : 기존에 없는 새로운 메서드를 정의하는 것(new) - 코드로 보면 오버로딩 된 메서드들은 <span style="color:red;">파라미터(매개변수)가 다른 것</span>을 알 수 있다.</p>
+<p>오버라이딩 : 상속받은 메서드의 내용을 변경하는 것(change, modify) - 코드를 보면 상속관계에 있는 클래스의 메서드이고 <span style="color:red;">파라미터(매개변수)의 차이가 없이 똑같은 것</span>을 알 수 있다.
+<div class="separator" style="clear:both;text-align:-webkit-auto;"></div>
+<div class="separator" style="clear:both;text-align:-webkit-auto;">가장 기본적인 부분부터 항상 점검하고 노력해야겠다. 안그러면 또 어디가서 망신 당할라.. ㅠㅠ 읽어주셔서 감사합니다~</div>
