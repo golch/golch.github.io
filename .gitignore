@@ -2,6 +2,6 @@ _config.yml
 feed.xml
 main.scss
 
-/_sass/
-/_site/feed.xml
+**/_sass/
+**/_site/feed.xml
 
