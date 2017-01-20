@@ -3,7 +3,5 @@ feed.xml
 main.scss
 
 
-*.yml
-*.xml
-*.scss
-
+.*
+!/.gitignore
