@@ -5,7 +5,8 @@ date:   2017-01-20 14:39:20 +0900
 categories: django
 ---
 
-Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.
+Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.  
+[원문참고](https://docs.djangoproject.com/en/1.10/intro/tutorial02/){:target="_blank"}
 
 
 1. PyMySQL 라이브러리 사용  

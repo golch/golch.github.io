@@ -6,13 +6,14 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 20 Jan 2017 15:07:46 +0900</pubDate>
-    <lastBuildDate>Fri, 20 Jan 2017 15:07:46 +0900</lastBuildDate>
+    <pubDate>Fri, 20 Jan 2017 16:12:31 +0900</pubDate>
+    <lastBuildDate>Fri, 20 Jan 2017 16:12:31 +0900</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>Django MySQL 연동하기</title>
-        <description>&lt;p&gt;Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.&lt;/p&gt;
+        <description>&lt;p&gt;Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.&lt;br /&gt;
+&lt;a href=&quot;https://docs.djangoproject.com/en/1.10/intro/tutorial02/&quot; target=&quot;_blank&quot;&gt;원문참고&lt;/a&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;PyMySQL 라이브러리 사용&lt;br /&gt;
