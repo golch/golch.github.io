@@ -6,9 +6,71 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 20 Jan 2017 14:31:39 +0900</pubDate>
-    <lastBuildDate>Fri, 20 Jan 2017 14:31:39 +0900</lastBuildDate>
+    <pubDate>Fri, 20 Jan 2017 15:07:46 +0900</pubDate>
+    <lastBuildDate>Fri, 20 Jan 2017 15:07:46 +0900</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Django MySQL 연동하기</title>
+        <description>&lt;p&gt;Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;PyMySQL 라이브러리 사용&lt;br /&gt;
+django 를 사용할때 MySQLdb 이걸 이용해서 DB연결을 하는 것이 보통이나 이 라이브러리가 python 버전에 영향을 받는 것 같다.(python3.x 지원을 안하는듯..)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;따라서 MySQL 연동을 위해서는 다른 라이브러리를 사용해야 한다.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;pip install PyMySQL&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;위 명령어로 설치하자. &lt;a href=&quot;https://github.com/PyMySQL/PyMySQL&quot; target=&quot;_blank&quot;&gt;PyMySQL 참고&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;** 참고 : MySQL의 설치는 딱히 설명하지 않고 넘어간다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;settings.py&lt;br /&gt;
+django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같이 설정한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pymysql&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pymysql&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;install_as_MySQLdb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+
+&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;중략&lt;/span&gt;
+
+
+&lt;span class=&quot;c&quot;&gt;#MySQL&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DATABASES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&#39;ENGINE&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;django.db.backends.mysql&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&#39;NAME&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;inform_place&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&#39;USER&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;django-test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&#39;PASSWORD&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;1111&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&#39;HOST&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;localhost&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;&#39;PORT&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;3306&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;이렇게 코딩한 후 다시 실행해봐야 한다. 단, migration 하는 것을 잊지말자.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;python manage.py migrate&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;에러 없이 잘 동작한다면 서버를 올려보자.&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;python manage.py runserver&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;markdown 으로 포스팅 첨 해보는데 생각보다 편하다.&lt;br /&gt;
+우분투나 맥이나 아무데서나 쉽게할 수 있는듯..&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 20 Jan 2017 14:39:20 +0900</pubDate>
+        <link>http://yourdomain.com/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html</guid>
+        
+        
+        <category>django</category>
+        
+      </item>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -630,81 +692,6 @@ import java.util.Scanner;&lt;/p&gt;
         <pubDate>Wed, 01 Apr 2015 13:02:58 +0900</pubDate>
         <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-5.html</link>
         <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-5.html</guid>
-        
-        <category>algospot</category>
-        
-        <category>알고리즘</category>
-        
-        <category>JAVA</category>
-        
-        
-        <category>프로그래밍</category>
-        
-      </item>
-    
-      <item>
-        <title>알고리즘 공부 #4</title>
-        <description>&lt;p&gt;Algospot 튜토리얼 문제 HOTSUMMER&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/HOTSUMMER&quot;&gt;https://algospot.com/judge/problem/read/HOTSUMMER&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;이번엔 왠지 간단할 것 같다.&lt;br /&gt;
-즉, 목표 전기 사용량을 입력받고 9시부터 18시까지의 사용량을 모두 더해서 목표보다 큰지 작은지를 판별하면 된다. 여기까지만 하고 튜토리얼은 졸업하고 다른 문제를 풀어봐야할듯ㅋㅋ&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;건물 개수는 T개. 제한은 없음&lt;/li&gt;
-&lt;li&gt;목표 전기 사용량을 입력값으로 받음.&lt;/li&gt;
-&lt;li&gt;9시~18시 까지 총 9개의 숫자를 입력값으로 받음. 공백으로 구분.&lt;/li&gt;
-&lt;li&gt;전력사용량은 모두 0~1000 사이의 정수.&lt;/li&gt;
-&lt;li&gt;전체 사용량의 합이 목표 이하이면 “YES”, 그렇지 못하면 “NO”를 출력한다.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/a32c70c7d271d5cb07be76a9b991b861.png&quot;&gt;&lt;img src=&quot;/assets/a32c70c7d271d5cb07be76a9b991b861.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;676&quot; class=&quot;alignnone size-full wp-image-384&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;[code lang=text]&lt;br /&gt;
-import java.util.Scanner;&lt;/p&gt;
-&lt;p&gt;public class Main {&lt;br /&gt;
-    public static void main(String[] args) {&lt;/p&gt;
-&lt;p&gt;        Scanner sc = new Scanner(System.in);&lt;br /&gt;
-        int T = sc.nextInt();&lt;/p&gt;
-&lt;p&gt;        int[] electricGoal = new int[T];&lt;br /&gt;
-        int[] A09 = new int[T];&lt;br /&gt;
-        int[] A10 = new int[T];&lt;br /&gt;
-        int[] A11 = new int[T];&lt;br /&gt;
-        int[] A12 = new int[T];&lt;br /&gt;
-        int[] A13 = new int[T];&lt;br /&gt;
-        int[] A14 = new int[T];&lt;br /&gt;
-        int[] A15 = new int[T];&lt;br /&gt;
-        int[] A16 = new int[T];&lt;br /&gt;
-        int[] A17 = new int[T];&lt;/p&gt;
-&lt;p&gt;        int[] sum = new int[T];&lt;/p&gt;
-&lt;p&gt;        for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
-            electricGoal[i] = sc.nextInt();&lt;/p&gt;
-&lt;p&gt;            A09[i] = sc.nextInt();&lt;br /&gt;
-            A10[i] = sc.nextInt();&lt;br /&gt;
-            A11[i] = sc.nextInt();&lt;br /&gt;
-            A12[i] = sc.nextInt();&lt;br /&gt;
-            A13[i] = sc.nextInt();&lt;br /&gt;
-            A14[i] = sc.nextInt();&lt;br /&gt;
-            A15[i] = sc.nextInt();&lt;br /&gt;
-            A16[i] = sc.nextInt();&lt;br /&gt;
-            A17[i] = sc.nextInt();&lt;/p&gt;
-&lt;p&gt;            sum[i] = A09[i] +A10[i] +A11[i] +A12[i] +A13[i] +A14[i] +A15[i] +A16[i] +A17[i];&lt;/p&gt;
-&lt;p&gt;        }&lt;/p&gt;
-&lt;p&gt;        for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
-            if(electricGoal[i] &amp;gt;= sum[i]){&lt;br /&gt;
-                System.out.println(&amp;quot;YES&amp;quot;);&lt;br /&gt;
-            }else{&lt;br /&gt;
-                System.out.println(&amp;quot;NO&amp;quot;);&lt;br /&gt;
-            }&lt;br /&gt;
-        }&lt;br /&gt;
-    }&lt;br /&gt;
-}&lt;/p&gt;
-&lt;p&gt;[/code]&lt;/p&gt;
-&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
-&lt;tr&gt;
-&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=7b7bb9da-a9a4-4f00-a8f4-3439801c9582&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</description>
-        <pubDate>Wed, 01 Apr 2015 11:49:39 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-4.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-4.html</guid>
         
         <category>algospot</category>
         
