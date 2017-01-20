@@ -6,9 +6,9 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Sep 2016 23:13:55 +0900</pubDate>
-    <lastBuildDate>Sun, 25 Sep 2016 23:13:55 +0900</lastBuildDate>
-    <generator>Jekyll v3.2.1</generator>
+    <pubDate>Sun, 02 Oct 2016 01:45:07 +0900</pubDate>
+    <lastBuildDate>Sun, 02 Oct 2016 01:45:07 +0900</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -21,8 +21,8 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
 
@@ -203,7 +203,7 @@ dpd create sportsstore 를 입력한다.&lt;/p&gt;
         <title>알고리즘 공부 #8</title>
         <description>&lt;p&gt;Algospot 문제 PICNIC&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/PICNIC&quot;&gt;https://algospot.com/judge/problem/read/PICNIC&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;이번에는 튜토리얼 문제가 아닌 '알고리즘 문제 해결 전략’ 이라는 책에 수록된 문제를 풀어보았다. 이 다음에 포스팅 하게 될 NQUEEN 이라는 문제를 풀다가 막혀서 한 단계 쉬운 비슷한 문제에 도전을 하게 된 것. 책의 해설도 필요한 상황이었고 이런 탐색, 경우의 수 류의 문제를 해결하는 능력을 좀더 키우기 위한 선택이었다.&lt;/p&gt;
+&lt;p&gt;이번에는 튜토리얼 문제가 아닌 &#39;알고리즘 문제 해결 전략’ 이라는 책에 수록된 문제를 풀어보았다. 이 다음에 포스팅 하게 될 NQUEEN 이라는 문제를 풀다가 막혀서 한 단계 쉬운 비슷한 문제에 도전을 하게 된 것. 책의 해설도 필요한 상황이었고 이런 탐색, 경우의 수 류의 문제를 해결하는 능력을 좀더 키우기 위한 선택이었다.&lt;/p&gt;
 &lt;p&gt;PICNIC(소풍) 문제는 아이들이 소풍을 가기 위해 짝을 짓는 경우의 수를 구하는 문제이다. 서로 친구인지 아닌지를 가늠하는 것이 포인트인데 이런 문제를 어떻게 풀어야 할지 책에 자세히 해설이 되어있다. 0번 아이부터 시작해서 친구인지 아닌지 검사하는 코드를 만들어야 한다. 이렇게 일일히 검사하는 것을 완전탐색 이라고 한다.&lt;/p&gt;
 &lt;p&gt;책에 나와있는 풀이를 보고 문제를 해결하였는데, 완성된 코드를 보면서 배운 점들이 있다.&lt;br /&gt;
 1. 친구인지 아닌지?를 판별하는 부분을 areFriends[][] 라는 boolean형의 2차원 배열로 만들었다. 이렇게 만들면 단순히 입력으로 받은 친구(여기서는 정수형)를 담아주기만 해도 다른 코드 없이 판별이 가능하다. 단, 순서를 항상 숫자가 작은 것을 앞에 넣어주어야 한다.&lt;br /&gt;
@@ -580,7 +580,7 @@ import java.util.Scanner;&lt;/p&gt;
 2. 입력값(percent-encoded URI)의 길이는 최대 80 이다.&lt;br /&gt;
 3. 입력되는 URI 를 decode 하시오.&lt;/p&gt;
 &lt;p&gt;음.. 잘 만든 것 같은데 런타임 오류 ㅠㅠ&lt;br /&gt;
-폭풍 검색 해보니 java에서 String의 replace 메소드 사용할 때 ‘$’ 얘가 문제가 된다. ‘\$'로 처리해야 정상적으로 동작함.&lt;br /&gt;
+폭풍 검색 해보니 java에서 String의 replace 메소드 사용할 때 ‘$’ 얘가 문제가 된다. ‘\$&#39;로 처리해야 정상적으로 동작함.&lt;br /&gt;
 이렇게 수정하고 다시 제출했는데 이번엔 오답!!!!&lt;/p&gt;
 &lt;p&gt;ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ&lt;br /&gt;
 결국 범인은 ‘%’ 였다. 쉬운듯 안쉬운 문제 ㅠㅠ&lt;br /&gt;
