@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title:  "Django MySQL 연동하기"
 date:   2017-01-20 14:39:20 +0900
 categories: django
