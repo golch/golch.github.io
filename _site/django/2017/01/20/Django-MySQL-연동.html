@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>밴드코로나 in JW메리어트 동대문</title>
-  <meta name="description" content="와인앤버스커 밴드코로나 공연">
+  <title>Django MySQL 연동하기</title>
+  <meta name="description" content="Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.원문참고">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html">
+  <link rel="canonical" href="http://yourdomain.com/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html">
   <link rel="alternate" type="application/rss+xml" title="골치의 블로그" href="http://yourdomain.com/feed.xml">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -68,13 +68,62 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">밴드코로나 in JW메리어트 동대문</h1>
-    <p class="post-meta"><time datetime="2016-04-01T01:07:28+09:00" itemprop="datePublished">Apr 1, 2016</time> • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{"login"=>"golch51", "email"=>"p2r64h32@gmail.com", "display_name"=>"golch51", "first_name"=>"", "last_name"=>""}</span></span></p>
+    <h1 class="post-title" itemprop="name headline">Django MySQL 연동하기</h1>
+    <p class="post-meta"><time datetime="2017-01-20T14:39:20+09:00" itemprop="datePublished">Jan 20, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>와인앤버스커 밴드코로나 공연<br />
-<a href="https://golch51.files.wordpress.com/2016/04/dsc_0028.jpg" rel="attachment wp-att-434"><img src="/assets/dsc_0028.jpg" alt="DSC_0028" width="474" height="314" class="alignnone size-full wp-image-434" /></a></p>
+    <p>Django Tutorial 을 진행하면 기본 database 가 SQLite 로 되어있는 것을 볼 수 있다. 보통 웹사이트를 만들 때에 많이 사용하는 MySQL로 database 를 바꾸는 방법을 알아보자.<br />
+<a href="https://docs.djangoproject.com/en/1.10/intro/tutorial02/" target="_blank">원문참고</a></p>
+
+<ol>
+  <li>PyMySQL 라이브러리 사용<br />
+django 를 사용할때 MySQLdb 이걸 이용해서 DB연결을 하는 것이 보통이나 이 라이브러리가 python 버전에 영향을 받는 것 같다.(python3.x 지원을 안하는듯..)</li>
+</ol>
+
+<p>따라서 MySQL 연동을 위해서는 다른 라이브러리를 사용해야 한다.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>pip install PyMySQL</code></pre></figure>
+
+<p>위 명령어로 설치하자. <a href="https://github.com/PyMySQL/PyMySQL" target="_blank">PyMySQL 참고</a></p>
+
+<p>** 참고 : MySQL의 설치는 딱히 설명하지 않고 넘어간다.</p>
+
+<ol>
+  <li>settings.py<br />
+django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같이 설정한다.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="n">pymysql</span><span class="o">.</span><span class="n">install_as_MySQLdb</span><span class="p">()</span>
+
+
+<span class="o">...</span> <span class="err">중략</span>
+
+
+<span class="c">#MySQL</span>
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">'ENGINE'</span><span class="p">:</span> <span class="s">'django.db.backends.mysql'</span><span class="p">,</span>
+        <span class="s">'NAME'</span><span class="p">:</span> <span class="s">'inform_place'</span><span class="p">,</span>
+        <span class="s">'USER'</span><span class="p">:</span> <span class="s">'django-test'</span><span class="p">,</span>
+        <span class="s">'PASSWORD'</span><span class="p">:</span> <span class="s">'1111'</span><span class="p">,</span>
+        <span class="s">'HOST'</span><span class="p">:</span> <span class="s">'localhost'</span><span class="p">,</span>
+        <span class="s">'PORT'</span><span class="p">:</span> <span class="s">'3306'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>이렇게 코딩한 후 다시 실행해봐야 한다. 단, migration 하는 것을 잊지말자.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>python manage.py migrate</code></pre></figure>
+
+<p>에러 없이 잘 동작한다면 서버를 올려보자.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>python manage.py runserver</code></pre></figure>
+
+<p>markdown 으로 포스팅 첨 해보는데 생각보다 편하다.<br />
+우분투나 맥이나 아무데서나 쉽게할 수 있는듯..</p>
+
 
   </div>
 
