@@ -23,4 +23,5 @@ disqus:
   id: "golch51"
 
 # For better code blocks
+highlighter: rouge
 pygments: true
