@@ -21,3 +21,10 @@ markdown: kramdown
 #disqus settings
 disqus:
   id: "golch51"
+
+# For better code blocks
+markdown: redcarpet
+redcarpet:
+    extension:
+        - fenced_code_blocks
+highlighter: pygments
