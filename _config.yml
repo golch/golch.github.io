@@ -24,4 +24,4 @@ disqus:
 
 # For better code blocks
 highlighter: rouge
-pygments: true
+#pygments: true
