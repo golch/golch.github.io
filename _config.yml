@@ -28,3 +28,4 @@ redcarpet:
     extension:
         - fenced_code_blocks
 highlighter: pygments
+pygments: true
