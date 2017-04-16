@@ -6,14 +6,14 @@
 </description>
     <link>http://golch.gitub.io/</link>
     <atom:link href="http://golch.gitub.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 16 Apr 2017 12:31:57 +0900</pubDate>
-    <lastBuildDate>Sun, 16 Apr 2017 12:31:57 +0900</lastBuildDate>
+    <pubDate>Sun, 16 Apr 2017 19:43:33 +0900</pubDate>
+    <lastBuildDate>Sun, 16 Apr 2017 19:43:33 +0900</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
         <title>Quick tour of Polymer</title>
         <description>&lt;p&gt;이 문서는 개인 스터디 목적으로 아래 링크의 문서를 번역한 것입니다(&lt;del&gt;발번역…&lt;/del&gt;). 코드 동작을 직접 보고싶으신 분들은 아래 링크에서 확인하시기 바랍니다.
-https://www.polymer-project.org/2.0/start/quick-tour&lt;/p&gt;
+&lt;a href=&quot;https://www.polymer-project.org/2.0/start/quick-tour&quot;&gt;https://www.polymer-project.org/2.0/start/quick-tour&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;확실하게, Polymer 는 웹 컴포넌트 만드는 것을 간단하게 해준다.&lt;/p&gt;
 
@@ -66,8 +66,9 @@ https://www.polymer-project.org/2.0/start/quick-tour&lt;/p&gt;
 
 &lt;p&gt;이 예제는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;custom-element&amp;gt;&lt;/code&gt; 를 추가하기 위해서, 그것이 초기화 될 때 lifecycle 콜백을 사용한다. 커스텀 element의 초기화가 끝나면, &lt;code class=&quot;highlighter-rouge&quot;&gt;ready&lt;/code&gt; lifecycle 콜백이 호출된다. 당신은 element 가 생성된 이후에, 단 한번 &lt;code class=&quot;highlighter-rouge&quot;&gt;ready&lt;/code&gt; 콜백을 사용할 수 있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/registering-elements&quot;&gt;Learn more : Element Registration&lt;/a&gt;
-&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/registering-elements#lifecycle-callbacks&quot;&gt;Learn more : Lifecycle Callbacks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/registering-elements&quot;&gt;Learn more : Element Registration&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/registering-elements#lifecycle-callbacks&quot;&gt;Learn more : Lifecycle Callbacks&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;shadow-dom-&quot;&gt;Shadow DOM 추가하기&lt;/h2&gt;
 &lt;p&gt;수많은 element는 내부의 DOM nodes를 포함하고 있다. DOM nodes 는 element의 UI와 행동을 수행한다. 당신은 당신의 element에 shadow DOM tree를 생성하기 위해서 Polymer’s DOM 템플릿을 사용할 수 있다.&lt;/p&gt;
