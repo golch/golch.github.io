@@ -7,7 +7,8 @@ categories: polymer
 ---
 
 이 문서는 개인 스터디 목적으로 아래 링크의 문서를 번역한 것입니다(~~발번역...~~). 코드 동작을 직접 보고싶으신 분들은 아래 링크에서 확인하시기 바랍니다.
-https://www.polymer-project.org/2.0/start/quick-tour
+[https://www.polymer-project.org/2.0/start/quick-tour](https://www.polymer-project.org/2.0/start/quick-tour)
+
 
 확실하게, Polymer 는 웹 컴포넌트 만드는 것을 간단하게 해준다.
 
@@ -59,6 +60,7 @@ Element를 등록하기 위해서는, `Polymer.Element` 를 확장한 ES6 클래
 이 예제는 `<custom-element>` 를 추가하기 위해서, 그것이 초기화 될 때 lifecycle 콜백을 사용한다. 커스텀 element의 초기화가 끝나면, `ready` lifecycle 콜백이 호출된다. 당신은 element 가 생성된 이후에, 단 한번 `ready` 콜백을 사용할 수 있다.
 
 [Learn more : Element Registration](https://www.polymer-project.org/2.0/docs/devguide/registering-elements)
+
 [Learn more : Lifecycle Callbacks](https://www.polymer-project.org/2.0/docs/devguide/registering-elements#lifecycle-callbacks)
 
 ## Shadow DOM 추가하기
