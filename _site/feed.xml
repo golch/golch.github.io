@@ -2,13 +2,399 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>골치의 블로그</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <description>개발자 골치의 블로그입니다. 주로 웹기술 관련 내용을 다룹니다.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 20 Jan 2017 16:12:31 +0900</pubDate>
-    <lastBuildDate>Fri, 20 Jan 2017 16:12:31 +0900</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <link>http://golch.gitub.io/</link>
+    <atom:link href="http://golch.gitub.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 16 Apr 2017 12:31:57 +0900</pubDate>
+    <lastBuildDate>Sun, 16 Apr 2017 12:31:57 +0900</lastBuildDate>
+    <generator>Jekyll v3.2.1</generator>
+    
+      <item>
+        <title>Quick tour of Polymer</title>
+        <description>&lt;p&gt;이 문서는 개인 스터디 목적으로 아래 링크의 문서를 번역한 것입니다(&lt;del&gt;발번역…&lt;/del&gt;). 코드 동작을 직접 보고싶으신 분들은 아래 링크에서 확인하시기 바랍니다.
+https://www.polymer-project.org/2.0/start/quick-tour&lt;/p&gt;
+
+&lt;p&gt;확실하게, Polymer 는 웹 컴포넌트 만드는 것을 간단하게 해준다.&lt;/p&gt;
+
+&lt;p&gt;Custom element는 boilerplate 코드를 줄이고, 복잡하고 상호작용하는 element 제작을 훨씬 쉽게 만들어주는 Polymer의 특별한 기능들에 이점을 줄 수 있다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Element 등록&lt;/li&gt;
+  &lt;li&gt;Lifecycle 콜백&lt;/li&gt;
+  &lt;li&gt;Property 관찰&lt;/li&gt;
+  &lt;li&gt;Shadow DOM template&lt;/li&gt;
+  &lt;li&gt;데이터 바인딩&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;아무것도 설치하지 않아도, 이 섹션에서 당신은 Polymer 라이브러리를 간단히 살펴볼 수 있다. 어떤 샘플 코드에서든지 Edit on Plunker 버튼을 클릭하면 코드를 수정하고 즉시 확인할 수 있다.
+아래 예제 중 더 공부하고 싶은 것이 있다면 버튼을 클릭하라.&lt;/p&gt;
+
+&lt;h2 id=&quot;element--register-an-element&quot;&gt;Element 등록하기 (Register an element)&lt;/h2&gt;
+&lt;p&gt;Element를 등록하기 위해서는, &lt;code class=&quot;highlighter-rouge&quot;&gt;Polymer.Element&lt;/code&gt; 를 확장한 ES6 클래스를 생성해야한다. 그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;customElements.define&lt;/code&gt; 메서드를 호출해야한다. 이 메서드는 새로운 element를 브라우저에 등록한다. Element 등록할 때는 element의 이름과 클래스 이름을 같게 만들고 property와 메서드를 추가한다. 커스텀 element의 이름은 &lt;strong&gt;반드시 ASCII 문자로 시작해야 하며 대쉬(-)를 포함해야 한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;custom-element.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Define the class for a new element called custom-element&lt;/span&gt;
+  &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomElement&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;custom-element&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;I'm a custom-element.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// Register the new element with the browser&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CustomElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;custom-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;custom-element&amp;gt;&amp;lt;/custom-element&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;이 예제는 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;custom-element&amp;gt;&lt;/code&gt; 를 추가하기 위해서, 그것이 초기화 될 때 lifecycle 콜백을 사용한다. 커스텀 element의 초기화가 끝나면, &lt;code class=&quot;highlighter-rouge&quot;&gt;ready&lt;/code&gt; lifecycle 콜백이 호출된다. 당신은 element 가 생성된 이후에, 단 한번 &lt;code class=&quot;highlighter-rouge&quot;&gt;ready&lt;/code&gt; 콜백을 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/registering-elements&quot;&gt;Learn more : Element Registration&lt;/a&gt;
+&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/registering-elements#lifecycle-callbacks&quot;&gt;Learn more : Lifecycle Callbacks&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;shadow-dom-&quot;&gt;Shadow DOM 추가하기&lt;/h2&gt;
+&lt;p&gt;수많은 element는 내부의 DOM nodes를 포함하고 있다. DOM nodes 는 element의 UI와 행동을 수행한다. 당신은 당신의 element에 shadow DOM tree를 생성하기 위해서 Polymer’s DOM 템플릿을 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;dom-element.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-module&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dom-element&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;I'm a DOM element. This is my shadow DOM!&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DomElement&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;dom-element&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;DomElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DomElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dom-module&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dom-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-element&amp;gt;&amp;lt;/dom-element&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/dom-template&quot;&gt;Learn more : DOM Templating&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;shadow-dom--1&quot;&gt;Shadow DOM 조립하기&lt;/h2&gt;
+&lt;p&gt;Shadow DOM은 구성을 조작할 수 있도록 해준다. Element의 자식은 분산될 수 있는데, 마치 shadow DOM tree에 삽입된 것처럼 그려진다.
+이 예제는 단순한 태그를 생성하는데, 이것은 이미지를 스타일 추가된 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt;로 감싼 태그이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;picture-frame.html&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-module&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;picture-frame&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- scoped CSS for this element --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;style&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline-block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#ccc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;border-radius&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;8px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nl&quot;&gt;padding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- any children are rendered here --&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;slot&amp;gt;&amp;lt;/slot&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PictureFrame&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;picture-frame&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;PictureFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;PictureFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dom-module&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;picture-frame.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;picture-frame&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;img&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://www.polymer-project.org/images/logos/p-logo-32.png&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/picture-frame&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note :&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;dom-module&amp;gt;&lt;/code&gt; 내부에서 정의된 CSS는 해당 element의 shadow DOM의 범위에 한한다. 따라서 여기서 정의된 div 규칙도 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;picture-frame&amp;gt;&lt;/code&gt; 내부의 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;div&amp;gt;&lt;/code&gt; 태그에서만 적용된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition&quot;&gt;Learn more : Composition &amp;amp; Distribution&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;데이터바인딩 사용하기&lt;/h2&gt;
+&lt;p&gt;당연하게도, 정적인 shadow DOM을 사용하는 것으로는 충분하지 않다. 당신은 보통 당신의 element가 shadow DOM을 동적으로 업데이트 하기를 원할것이다.&lt;/p&gt;
+
+&lt;p&gt;데이터바인딩은 당신의 element 변화를 빠르게 전달하고 boilerplate 코드를 줄이기에 아주 좋은 방법이다. 당신은 컴포넌트에 작성된 property들을 &lt;code class=&quot;highlighter-rouge&quot;&gt;(double-mustache) 문법을 통해서 바인드할 수 있다.&lt;/code&gt;는 그 괄호 안의 값이 가리키는 property 값에 의해서 대체된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;name-tag.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- import polymer-element --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-module&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name-tag&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- bind to the &quot;owner&quot; property --&amp;gt;&lt;/span&gt;
+    This is &lt;span class=&quot;nt&quot;&gt;&amp;lt;b&amp;gt;&amp;lt;/b&amp;gt;&lt;/span&gt;'s name-tag element.
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NameTag&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;name-tag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      
+      &lt;span class=&quot;c1&quot;&gt;// set this element's owner property&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Daniel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;NameTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;NameTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dom-module&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name-tag.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;name-tag&amp;gt;&amp;lt;/name-tag&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/data-binding&quot;&gt;Learn more : Data Binding&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;declare-a-property&quot;&gt;프로퍼티의 선언(Declare a property)&lt;/h2&gt;
+&lt;p&gt;Property는 element의 공개 API에서 중요한 부분이다. Polymer의 선언된 property는 수많은 공통패턴을 제공한다. 예를들면 기본값을 셋팅하고, 마크업으로부터 property를 설정하고, property 변화를 관찰하는 것 등을 제공한다.
+아래 예제는 위 마지막 예제에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;owner&lt;/code&gt; 프로퍼티를 선언한다. 또한 &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; 마크업으로부터 owner property 설정하는 것을 보여준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;configurable-name-tag.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-module&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;configurable-name-tag&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- bind to the &quot;owner&quot; property --&amp;gt;&lt;/span&gt;
+    This is &lt;span class=&quot;nt&quot;&gt;&amp;lt;b&amp;gt;&lt;/span&gt;[[owner]]&lt;span class=&quot;nt&quot;&gt;&amp;lt;/b&amp;gt;&lt;/span&gt;'s name-tag element.
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+  
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ConfigurableNameTag&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;configurable-name-tag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// configure owner property&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Daniel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ConfigurableNameTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ConfigurableNameTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dom-module&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;configurable-name-tag.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- configure a property from markup by setting
+         the corresponding attribute                 --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;configurable-name-tag&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;owner=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Scott&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/configurable-name-tag&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/properties&quot;&gt;Learn more : Declared Properties&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;bind-to-a-property&quot;&gt;프로퍼티 바인딩 하기(Bind to a property)&lt;/h2&gt;
+&lt;p&gt;다음 콘텐츠에 덧붙이자면, 당신은 element의 property에 바인딩을 할 수 있다(&lt;code class=&quot;highlighter-rouge&quot;&gt;property-name=&quot;[[binding]]&quot;&lt;/code&gt;을 이용해서). Polymer property는 선택적으로 양방향 바인딩을 지원할 수 있는데, &lt;code class=&quot;highlighter-rouge&quot;&gt;property-name=&quot;&quot;&lt;/code&gt; 과 같이 표현한다.
+이 예제는 양방향 바인딩을 사용한다 : 커스텀 element인 &lt;code class=&quot;highlighter-rouge&quot;&gt;iron-input&lt;/code&gt;에 &lt;code class=&quot;highlighter-rouge&quot;&gt;owner&lt;/code&gt; property를 바인딩 해서 사용자 타입에 따라서 업데이트 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;editable-name-tag.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/iron-input+polymerelements+:2.0-preview/shadycss+webcomponents+1.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- import the iron-input element --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/iron-input+polymerelements+:2.0-preview/shadycss+webcomponents+1.0.0-rc.2/components/iron-input/iron-input.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-module&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;editable-name-tag&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- bind to the &quot;owner&quot; property --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;This is &lt;span class=&quot;nt&quot;&gt;&amp;lt;b&amp;gt;&lt;/span&gt;[[owner]]&lt;span class=&quot;nt&quot;&gt;&amp;lt;/b&amp;gt;&lt;/span&gt;'s name-tag element.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    
+    &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- iron-input exposes a two-way bindable input value --&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;iron-input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;bind-value=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;input&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;is=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;iron-input&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;placeholder=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Your name here...&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/iron-input&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EditableNameTag&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;editable-name-tag&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      
+      &lt;span class=&quot;c1&quot;&gt;// configure the owner property&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;properties&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;owner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;na&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Daniel'&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;EditableNameTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EditableNameTag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dom-module&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;editable-name-tag.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;editable-name-tag&amp;gt;&amp;lt;/editable-name-tag&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note :&lt;/strong&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;iron-input&lt;/code&gt; 은 기본태그인 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;input&amp;gt;&lt;/code&gt;을 감싸고, 양방향 바인딩과 값 확인(validation)을 제공한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;dom-repeat---&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;dom-repeat&amp;gt;&lt;/code&gt; 사용해서 템플릿 반복하기&lt;/h2&gt;
+&lt;p&gt;템플릿 반복자(&lt;code class=&quot;highlighter-rouge&quot;&gt;dom-repeat&lt;/code&gt;)는 배열(array)로 바인드하는데 특화된 템플릿이다. 이것은 템플릿의 콘텐츠들을 배열의 항목으로 포함하는 하나의 인스턴스(instance)를 생성한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;employee-list.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- import polymer-element --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- import template repeater --&amp;gt;&lt;/span&gt; 
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/polymer+2.0.0-rc.2/components/polymer/lib/elements/dom-repeat.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;dom-module&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;employee-list&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt; Employee list: &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;template&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;is=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;dom-repeat&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;items=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;First name: &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&amp;gt;&lt;/span&gt;Last name: &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;kr&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EmployeeList&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Polymer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Element&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kr&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;employee-list&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      
+      &lt;span class=&quot;c1&quot;&gt;// set this element's employees property&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kr&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;employees&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Bob'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Li'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Ayesha'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Johnson'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Fatma'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Kumari'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Tony'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Morelli'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;];&lt;/span&gt; 
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;customElements&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;EmployeeList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EmployeeList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dom-module&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;index.html&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;lang=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;en&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;import&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;employee-list.html&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;employee-list&amp;gt;&amp;lt;/employee-list&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.polymer-project.org/2.0/docs/devguide/templates&quot;&gt;Learn more : Template Repeater&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 16 Apr 2017 12:19:20 +0900</pubDate>
+        <link>http://golch.gitub.io/polymer/2017/04/16/Quick-tour-of-Polymer.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/polymer/2017/04/16/Quick-tour-of-Polymer.html</guid>
+        
+        
+        <category>polymer</category>
+        
+      </item>
     
       <item>
         <title>Django MySQL 연동하기</title>
@@ -42,13 +428,13 @@ django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같�
 
 &lt;span class=&quot;c&quot;&gt;#MySQL&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;DATABASES&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&#39;default&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&#39;ENGINE&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;django.db.backends.mysql&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&#39;NAME&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;inform_place&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&#39;USER&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;django-test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&#39;PASSWORD&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;1111&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&#39;HOST&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;localhost&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;s&quot;&gt;&#39;PORT&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;3306&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'ENGINE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'django.db.backends.mysql'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'NAME'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'inform_place'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'USER'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'django-test'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'PASSWORD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'1111'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'HOST'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'localhost'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;s&quot;&gt;'PORT'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'3306'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
@@ -65,8 +451,8 @@ django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같�
 
 </description>
         <pubDate>Fri, 20 Jan 2017 14:39:20 +0900</pubDate>
-        <link>http://yourdomain.com/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html</guid>
+        <link>http://golch.gitub.io/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html</guid>
         
         
         <category>django</category>
@@ -84,15 +470,15 @@ django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같�
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 23 Sep 2016 13:02:20 +0900</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2016/09/23/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2016/09/23/welcome-to-jekyll.html</guid>
+        <link>http://golch.gitub.io/jekyll/update/2016/09/23/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/jekyll/update/2016/09/23/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
@@ -152,8 +538,8 @@ app.listen(5000);&lt;br /&gt;
 &lt;p&gt;아직 책 뒷부분은 읽어보지 않아서 어떤 방식으로 진행될지 잘 모르겠으나, 아마도 우리의 프로젝트는 nodejs서버 위에 angularjs로 클라이언트를 만드는 것이고, deployd서버는 데이터를 제공하는 용도로만 사용할 것 같다.&lt;/p&gt;
 </description>
         <pubDate>Mon, 02 May 2016 16:21:07 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2016/05/02/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-2.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2016/05/02/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-2.html</guid>
+        <link>http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2016/05/02/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-2.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2016/05/02/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-2.html</guid>
         
         <category>adam freeman</category>
         
@@ -195,8 +581,8 @@ dpd create sportsstore 를 입력한다.&lt;/p&gt;
 &lt;p&gt;휴. 정리하면서 하려니 진도도 느리고 힘들다. 오늘은 일단 여기까지...&lt;/p&gt;
 </description>
         <pubDate>Wed, 27 Apr 2016 16:59:10 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%BB%B4%ED%93%A8%ED%84%B0/2016/04/27/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-1.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%BB%B4%ED%93%A8%ED%84%B0/2016/04/27/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-1.html</guid>
+        <link>http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%BB%B4%ED%93%A8%ED%84%B0/2016/04/27/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-1.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/%EC%BB%B4%ED%93%A8%ED%84%B0/2016/04/27/angularjs-ec-b1-85-ed-94-84-eb-a1-9c-angularjs-ec-8b-a4-ec-8a-b5-1.html</guid>
         
         <category>adam freeman</category>
         
@@ -221,8 +607,8 @@ dpd create sportsstore 를 입력한다.&lt;/p&gt;
 &lt;a href=&quot;https://golch51.files.wordpress.com/2016/04/dsc_0028.jpg&quot; rel=&quot;attachment wp-att-434&quot;&gt;&lt;img src=&quot;/assets/dsc_0028.jpg&quot; alt=&quot;DSC_0028&quot; width=&quot;474&quot; height=&quot;314&quot; class=&quot;alignnone size-full wp-image-434&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 01 Apr 2016 01:07:28 +0900</pubDate>
-        <link>http://yourdomain.com/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html</guid>
+        <link>http://golch.gitub.io/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/%EC%82%AC%EC%A7%84/2016/04/01/eb-b0-b4-eb-93-9c-ec-bd-94-eb-a1-9c-eb-82-98-in-jw-eb-a9-94-eb-a6-ac-ec-96-b4-ed-8a-b8-eb-8f-99-eb-8c-80-eb-ac-b8.html</guid>
         
         
         <category>사진</category>
@@ -242,8 +628,8 @@ dpd create sportsstore 를 입력한다.&lt;/p&gt;
 &lt;p&gt;예전에 우분투 12.04 시절에 설치해서 사용해봤었는데 한글깨짐 및 IDE 문제점 등으로 도저히 못쓰겠다고 판단, 일주일만에 지운적이 있었다. 그런데 이번에 설치해보니 windows 대비 속도도 빠르고, (UI 에 대한 호불호는 나뉠 수 있겠다) 설치도 간편하고, 한글도 잘 지원되는 등 많이 개선되었다. 사용하는 어플리케이션 들이 멀티플랫폼을 많이 지원하는 것도 하나의 요인인듯 하다. 그래서 일부 MS-Office 가 필요한 상황을 제외하고 작업용도로 이번에 사용해보려고 한다.&lt;/p&gt;
 </description>
         <pubDate>Thu, 24 Dec 2015 14:15:54 +0900</pubDate>
-        <link>http://yourdomain.com/ubuntu/2015/12/24/ubuntu-14-04-ec-84-a4-ec-b9-98-ed-95-a8.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/ubuntu/2015/12/24/ubuntu-14-04-ec-84-a4-ec-b9-98-ed-95-a8.html</guid>
+        <link>http://golch.gitub.io/ubuntu/2015/12/24/ubuntu-14-04-ec-84-a4-ec-b9-98-ed-95-a8.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/ubuntu/2015/12/24/ubuntu-14-04-ec-84-a4-ec-b9-98-ed-95-a8.html</guid>
         
         <category>우분투</category>
         
@@ -266,7 +652,7 @@ dpd create sportsstore 를 입력한다.&lt;/p&gt;
         <title>알고리즘 공부 #8</title>
         <description>&lt;p&gt;Algospot 문제 PICNIC&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://algospot.com/judge/problem/read/PICNIC&quot;&gt;https://algospot.com/judge/problem/read/PICNIC&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;이번에는 튜토리얼 문제가 아닌 &#39;알고리즘 문제 해결 전략’ 이라는 책에 수록된 문제를 풀어보았다. 이 다음에 포스팅 하게 될 NQUEEN 이라는 문제를 풀다가 막혀서 한 단계 쉬운 비슷한 문제에 도전을 하게 된 것. 책의 해설도 필요한 상황이었고 이런 탐색, 경우의 수 류의 문제를 해결하는 능력을 좀더 키우기 위한 선택이었다.&lt;/p&gt;
+&lt;p&gt;이번에는 튜토리얼 문제가 아닌 '알고리즘 문제 해결 전략’ 이라는 책에 수록된 문제를 풀어보았다. 이 다음에 포스팅 하게 될 NQUEEN 이라는 문제를 풀다가 막혀서 한 단계 쉬운 비슷한 문제에 도전을 하게 된 것. 책의 해설도 필요한 상황이었고 이런 탐색, 경우의 수 류의 문제를 해결하는 능력을 좀더 키우기 위한 선택이었다.&lt;/p&gt;
 &lt;p&gt;PICNIC(소풍) 문제는 아이들이 소풍을 가기 위해 짝을 짓는 경우의 수를 구하는 문제이다. 서로 친구인지 아닌지를 가늠하는 것이 포인트인데 이런 문제를 어떻게 풀어야 할지 책에 자세히 해설이 되어있다. 0번 아이부터 시작해서 친구인지 아닌지 검사하는 코드를 만들어야 한다. 이렇게 일일히 검사하는 것을 완전탐색 이라고 한다.&lt;/p&gt;
 &lt;p&gt;책에 나와있는 풀이를 보고 문제를 해결하였는데, 완성된 코드를 보면서 배운 점들이 있다.&lt;br /&gt;
 1. 친구인지 아닌지?를 판별하는 부분을 areFriends[][] 라는 boolean형의 2차원 배열로 만들었다. 이렇게 만들면 단순히 입력으로 받은 친구(여기서는 정수형)를 담아주기만 해도 다른 코드 없이 판별이 가능하다. 단, 순서를 항상 숫자가 작은 것을 앞에 넣어주어야 한다.&lt;br /&gt;
@@ -348,8 +734,8 @@ import java.util.Scanner;&lt;/p&gt;
 &lt;/table&gt;
 </description>
         <pubDate>Thu, 09 Apr 2015 17:57:19 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/09/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-8.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/09/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-8.html</guid>
+        <link>http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/09/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-8.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/09/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-8.html</guid>
         
         <category>algospot</category>
         
@@ -491,8 +877,8 @@ import java.util.Scanner;&lt;/p&gt;
 &lt;/table&gt;
 </description>
         <pubDate>Fri, 03 Apr 2015 14:47:14 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/03/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-7.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/03/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-7.html</guid>
+        <link>http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/03/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-7.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/03/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-7.html</guid>
         
         <category>algospot</category>
         
@@ -616,85 +1002,12 @@ import java.util.Scanner;&lt;/p&gt;
 &lt;/table&gt;
 </description>
         <pubDate>Thu, 02 Apr 2015 16:04:37 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/02/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-6.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/02/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-6.html</guid>
+        <link>http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/02/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-6.html</link>
+        <guid isPermaLink="true">http://golch.gitub.io/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/02/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-6.html</guid>
         
         <category>algospot</category>
         
         <category>featured</category>
-        
-        <category>알고리즘</category>
-        
-        <category>JAVA</category>
-        
-        
-        <category>프로그래밍</category>
-        
-      </item>
-    
-      <item>
-        <title>알고리즘 공부 #5</title>
-        <description>&lt;p&gt;Algospot 튜토리얼 문제 URI&lt;br /&gt;
-&lt;a href=&quot;https://algospot.com/judge/problem/read/URI&quot;&gt;https://algospot.com/judge/problem/read/URI&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;왕초보급은 이제 졸업하고 다음 단계로 올라왔다. 빨리 어려운 것도 풀어보고 싶지만 일단은 차근차근...&lt;br /&gt;
-이번 문제는 영어로 쓰여있어서 일단 문제 파악부터 해야한다.&lt;/p&gt;
-&lt;p&gt;음. 특수문자 %가 포함된 encoded string 을 진짜 특수문자로 치환하는 문제이다.&lt;br /&gt;
-1. 테스트케이스 T는 1~100 사이의 정수이다.&lt;br /&gt;
-2. 입력값(percent-encoded URI)의 길이는 최대 80 이다.&lt;br /&gt;
-3. 입력되는 URI 를 decode 하시오.&lt;/p&gt;
-&lt;p&gt;음.. 잘 만든 것 같은데 런타임 오류 ㅠㅠ&lt;br /&gt;
-폭풍 검색 해보니 java에서 String의 replace 메소드 사용할 때 ‘$’ 얘가 문제가 된다. ‘\$&#39;로 처리해야 정상적으로 동작함.&lt;br /&gt;
-이렇게 수정하고 다시 제출했는데 이번엔 오답!!!!&lt;/p&gt;
-&lt;p&gt;ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ&lt;br /&gt;
-결국 범인은 ‘%’ 였다. 쉬운듯 안쉬운 문제 ㅠㅠ&lt;br /&gt;
-예를 들어서 %2525 이런 입력이 들어왔을때 %25는 %로 치환되므로 %25 이렇게 출력되는 것이 맞다. 출제자의 의도는 한번만 치환과정을 거쳐야 함. 그런데 치환하는 코드를&lt;/p&gt;
-&lt;p&gt;[code lang=text]&lt;br /&gt;
-uri[i] = uri[i].replaceAll(&amp;quot;%25&amp;quot;, &amp;quot;%&amp;quot;);&lt;br /&gt;
-uri[i] = uri[i].replaceAll(&amp;quot;%20&amp;quot;, &amp;quot; &amp;quot;);&lt;br /&gt;
-uri[i] = uri[i].replaceAll(&amp;quot;%21&amp;quot;, &amp;quot;!&amp;quot;);&lt;br /&gt;
-uri[i] = uri[i].replaceAll(&amp;quot;%24&amp;quot;, &amp;quot;$&amp;quot;);&lt;br /&gt;
-[/code]&lt;/p&gt;
-&lt;p&gt;이렇게 짜면 %25 처리 후 다른 코드가 처리되어 두번 처리되는 경우가 있다. 결국 %25 치환코드를 맨 아랫줄로 내려서 해결!&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://golch51.files.wordpress.com/2015/04/8aa007859dbf5133565ebd2e0520a3ae.png&quot;&gt;&lt;img src=&quot;/assets/8aa007859dbf5133565ebd2e0520a3ae.png&quot; alt=&quot;&quot; width=&quot;687&quot; height=&quot;694&quot; class=&quot;alignnone size-full wp-image-388&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;3번이나 틀림ㅋㅋㅋㅋ&lt;/p&gt;
-&lt;p&gt;[code lang=text]&lt;br /&gt;
-import java.util.Scanner;&lt;/p&gt;
-&lt;p&gt;public class Main {&lt;br /&gt;
-    public static void main(String[] args) {&lt;br /&gt;
-        Scanner sc = new Scanner(System.in);&lt;/p&gt;
-&lt;p&gt;        int T = sc.nextInt();&lt;br /&gt;
-        String[] uri = new String[T];&lt;/p&gt;
-&lt;p&gt;        if(( 1&amp;lt;=T ) &amp;amp;&amp;amp; ( T&amp;lt;=100 )){//T는 1~100 사이의 정수.&lt;br /&gt;
-            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
-                uri[i] = sc.next();&lt;/p&gt;
-&lt;p&gt;                if((0 &amp;lt; uri[i].length()) &amp;amp;&amp;amp; (uri[i].length() &amp;lt;= 80)){&lt;/p&gt;
-&lt;p&gt;                    uri[i] = uri[i].replaceAll(&amp;quot;%20&amp;quot;, &amp;quot; &amp;quot;);&lt;br /&gt;
-                    uri[i] = uri[i].replaceAll(&amp;quot;%21&amp;quot;, &amp;quot;!&amp;quot;);&lt;br /&gt;
-                    uri[i] = uri[i].replaceAll(&amp;quot;%24&amp;quot;, &amp;quot;\\$&amp;quot;);&lt;br /&gt;
-                    uri[i] = uri[i].replaceAll(&amp;quot;%28&amp;quot;, &amp;quot;(&amp;quot;);&lt;br /&gt;
-                    uri[i] = uri[i].replaceAll(&amp;quot;%29&amp;quot;, &amp;quot;)&amp;quot;);&lt;br /&gt;
-                    uri[i] = uri[i].replaceAll(&amp;quot;%2a&amp;quot;, &amp;quot;*&amp;quot;);&lt;br /&gt;
-                    uri[i] = uri[i].replaceAll(&amp;quot;%25&amp;quot;, &amp;quot;%&amp;quot;);&lt;br /&gt;
-                }&lt;/p&gt;
-&lt;p&gt;            }&lt;/p&gt;
-&lt;p&gt;            for(int i=0; i&amp;lt;T; i++){&lt;br /&gt;
-                System.out.println(uri[i]);&lt;br /&gt;
-            }&lt;br /&gt;
-        }&lt;br /&gt;
-    }&lt;br /&gt;
-}&lt;/p&gt;
-&lt;p&gt;[/code]&lt;/p&gt;
-&lt;table cellspacing=&quot;0&quot; cellpadding=&quot;0&quot; width=&quot;100%&quot;&gt;
-&lt;tr&gt;
-&lt;td&gt;이 글은 Evernote에서 작성되었습니다. Evernote는 하나의 업무 공간입니다. &lt;a href=&quot;https://www.evernote.com/getit?email_name=emailNote&amp;amp;email_guid=68a8bf43-ba34-433f-87bb-212370264a3b&amp;amp;email_link=download_app&quot;&gt;Evernote를 다운로드하세요&lt;/a&gt;.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-</description>
-        <pubDate>Wed, 01 Apr 2015 13:02:58 +0900</pubDate>
-        <link>http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-5.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/2015/04/01/ec-95-8c-ea-b3-a0-eb-a6-ac-ec-a6-98-ea-b3-b5-eb-b6-80-5.html</guid>
-        
-        <category>algospot</category>
         
         <category>알고리즘</category>
         
