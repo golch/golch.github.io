@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title: [번역] Quick tour of Polymer
+title: Quick tour of Polymer(번역)
 date:   2017-04-16 12:19:20 +0900
 categories: polymer
 ---
