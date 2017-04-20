@@ -69,3 +69,67 @@
     .vi    { color: #008080 } // Name.Variable.Instance
     .il    { color: #099 } // Literal.Number.Integer.Long
 }
+
+
+/**
+ * Code Container
+ */
+
+.codecontainer pre
+{
+	overflow-x: auto;
+}
+
+.codecontainer pre code
+{
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-x: visible;
+	counter-reset: line-numbering;
+	position: relative;
+}
+
+.codecontainer pre code .line
+{
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	line-height: auto;
+}
+
+.codecontainer pre code .line::before
+{
+	content: counter(line-numbering);
+	counter-increment: line-numbering;
+	width: 2em;
+	text-align: right;
+	font-size: small;
+	display: inline-block;
+	margin-right: 1.0em;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	user-drag: none;
+}
+
+
+.codecontainer .highlight
+{
+	font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
+	font-size: 0.8em;
+	margin-bottom: 13px;
+}
+
+.codecontainer
+{
+	background-color: #3085d6;
+}
+
+.codecontainer .codelabel
+{
+	padding: 0.5em;
+	color: #FFF;
+}
