@@ -4,31 +4,6 @@
   {% include head.html %}
 
   <body>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-      jQuery("pre code").html(function(index, html) {
-        return html.trim().replace(/^(.*)$/mg, "<span class=\"line\">$1</span>")
-      });
-      $('pre code').each(function( index ) {
-        var codetype = $(this).data('lang');
-        var hilite = $(this).parent().parent();
-        hilite.wrap("<div class=\"codecontainer\"></div>");
-        if(codetype)
-        {
-          hilite.before( "<span class=\"codelabel\">code: <strong>"+codetype+"</strong></span>" );
-        }else{
-          hilite.before( "<span class=\"codelabel\"><strong>code</strong></span>" );
-        }
-      });
-      $("pre code .line").html(function(index, html) {
-        if(!html){
-          return "&nbsp";
-        }else
-        {
-          return html;
-        }
-      });
-    </script>
 
     {% include header.html %}
 

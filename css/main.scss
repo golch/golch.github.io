@@ -3,7 +3,10 @@
 ---
 @charset "utf-8";
 
-
+@font-face{
+  font-family: 'D2Coding';
+  src: url('../_assets/fonts/D2Coding.ttf') format( 'truetype');
+}
 
 // Our variables
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -28,8 +31,6 @@ $content-width:    800px;
 $on-palm:          600px;
 $on-laptop:        800px;
 
-$code-font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
-
 // Use media queries like this:
 // @include media-query($on-palm) {
 //     .wrapper {
@@ -51,25 +52,3 @@ $code-font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
         "layout",
         "syntax-highlighting"
 ;
-
-.post .highlight pre {
-    background-color: transparent;
-    border: none;
-    padding: inherit !important;
-}
-
-// 포스팅을 쓸때, `단어` 안의 단어와 하이라이팅 된 코드 등에 영향.
-.post code {
-//  border: 1px solid #c0daf2;
-  font-family: $code-font-family;
-  padding: 0 .25em;
-  border-radius:2px;
-  background-color: #e9e7f1; color: #180d49;
-}
-
-.post pre code {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  color: inherit;
-}
