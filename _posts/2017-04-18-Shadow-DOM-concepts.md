@@ -6,7 +6,7 @@ date:   2017-04-18 12:10:20 +0900
 categories: polymer
 ---
 
-원문보기 : https://www.polymer-project.org/2.0/docs/devguide/shadow-dom
+원문보기 : [https://www.polymer-project.org/2.0/docs/devguide/shadow-dom](https://www.polymer-project.org/2.0/docs/devguide/shadow-dom)
 
 Shadow DOM은 컴포넌트를 만들도록 도와주는 새로운 DOM 기능이다. 당신은 shadow DOM을 element 내부의 **범위가 지정된 하위트리** 라고 생각해도 된다.
 > **웹 기초에 관해 더 읽어보기.** 이 문서는 polymer와 연관된 shadow DOM의 개요를 보여준다. Shadow DOM의 더 심화된 개요가 궁금하다면, 웹 기초에 관한 다음 링크를 읽어보라. [Shadow DOM v1: self-contained web components](https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom?hl=en)
