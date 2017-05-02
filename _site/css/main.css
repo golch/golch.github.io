@@ -1,3 +1,6 @@
+@font-face {
+  font-family: 'D2Coding';
+  src: url("../_assets/fonts/D2Coding.ttf") format("truetype"); }
 /**
  * Reset some basic elements
  */
@@ -13,7 +16,7 @@ dl, dd, ol, ul, figure {
 body {
   font: 400 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #111;
-  background-color: #fdfdfd;
+  background-color: #ffffff;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
   -moz-font-feature-settings: "kern" 1;
@@ -179,7 +182,7 @@ pre {
       position: absolute;
       top: 9px;
       right: 15px;
-      background-color: #fdfdfd;
+      background-color: #ffffff;
       border: 1px solid #e8e8e8;
       border-radius: 5px;
       text-align: right; }
@@ -316,13 +319,18 @@ pre {
       .post-content h4 {
         font-size: 18px; } }
 
+@font-face {
+  font-family: 'D2Coding';
+  src: url("../_assets/fonts/D2Coding.ttf") format("truetype"); }
 /**
  * Syntax highlighting styles
  */
 .highlight {
   background: #fff; }
   .highlighter-rouge .highlight {
-    background: #eef; }
+    font-family: 'D2Coding';
+    font-size: 0.8em;
+    margin-bottom: 13px; }
   .highlight .c {
     color: #998;
     font-style: italic; }
