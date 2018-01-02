@@ -6,7 +6,7 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: 골치의 블로그
+title: GOLCH
 email: p2r64h32@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   개발자 골치의 블로그입니다. 주로 웹기술 관련 내용을 다룹니다.
@@ -53,3 +53,16 @@ sources:
   - _assets/fonts
   - _assets/img
   - _assets/js
+
+
+collections:
+  tags:
+    output: true
+    permalink: /tags/:path/
+
+defaults:
+  - scope:
+      path: ''
+      type: tags
+    values:
+      layout: tag
