@@ -11,8 +11,8 @@
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax.css">
-  <link rel="canonical" href="http://golch.gitub.io/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html">
-  <link rel="alternate" type="application/rss+xml" title="골치의 블로그" href="http://golch.gitub.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/django/2017/01/20/Django-MySQL-%EC%97%B0%EB%8F%99.html">
+  <link rel="alternate" type="application/rss+xml" title="GOLCH" href="http://localhost:4000/feed.xml">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -33,7 +33,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/">골치의 블로그</a>
+    <a class="site-title" href="/">GOLCH</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -84,7 +84,7 @@ django 를 사용할때 MySQLdb 이걸 이용해서 DB연결을 하는 것이 �
 
 <p>따라서 MySQL 연동을 위해서는 다른 라이브러리를 사용해야 한다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>pip install PyMySQL</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>pip install PyMySQL</code></pre></figure>
 
 <p>위 명령어로 설치하자. <a href="https://github.com/PyMySQL/PyMySQL" target="_blank">PyMySQL 참고</a></p>
 
@@ -116,11 +116,11 @@ django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같�
 
 <p>이렇게 코딩한 후 다시 실행해봐야 한다. 단, migration 하는 것을 잊지말자.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>python manage.py migrate</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>python manage.py migrate</code></pre></figure>
 
 <p>에러 없이 잘 동작한다면 서버를 올려보자.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="gp">$ </span>python manage.py runserver</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>python manage.py runserver</code></pre></figure>
 
 <p>markdown 으로 포스팅 첨 해보는데 생각보다 편하다.<br />
 우분투나 맥이나 아무데서나 쉽게할 수 있는듯..</p>
@@ -152,12 +152,12 @@ s.setAttribute('data-timestamp', +new Date());
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">골치의 블로그</h2>
+    <h2 class="footer-heading">GOLCH</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>골치의 블로그</li>
+          <li>GOLCH</li>
           <li><a href="mailto:p2r64h32@gmail.com">p2r64h32@gmail.com</a></li>
         </ul>
       </div>

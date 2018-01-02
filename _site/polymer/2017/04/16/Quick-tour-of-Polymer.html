@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Quick tour of Polymer</title>
+  <title>Quick tour of Polymer(번역)</title>
   <meta name="description" content="이 문서는 개인 스터디 목적으로 아래 링크의 문서를 번역한 것입니다(발번역…). 코드 동작을 직접 보고싶으신 분들은 아래 링크에서 확인하시기 바랍니다.https://www.polymer-project.org/2.0/start/quick-tour">
 
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/syntax.css">
-  <link rel="canonical" href="http://golch.gitub.io/polymer/2017/04/16/Quick-tour-of-Polymer.html">
-  <link rel="alternate" type="application/rss+xml" title="골치의 블로그" href="http://golch.gitub.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/polymer/2017/04/16/Quick-tour-of-Polymer.html">
+  <link rel="alternate" type="application/rss+xml" title="GOLCH" href="http://localhost:4000/feed.xml">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -33,7 +33,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/">골치의 블로그</a>
+    <a class="site-title" href="/">GOLCH</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -69,7 +69,7 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Quick tour of Polymer</h1>
+    <h1 class="post-title" itemprop="name headline">Quick tour of Polymer(번역)</h1>
     <p class="post-meta"><time datetime="2017-04-16T12:19:20+09:00" itemprop="datePublished">Apr 16, 2017</time></p>
   </header>
 
@@ -91,29 +91,28 @@
 <p>아무것도 설치하지 않아도, 이 섹션에서 당신은 Polymer 라이브러리를 간단히 살펴볼 수 있다. 어떤 샘플 코드에서든지 Edit on Plunker 버튼을 클릭하면 코드를 수정하고 즉시 확인할 수 있다.
 아래 예제 중 더 공부하고 싶은 것이 있다면 버튼을 클릭하라.</p>
 
-<h2 id="element--register-an-element">Element 등록하기 (Register an element)</h2>
+<h2 id="element-등록하기-register-an-element">Element 등록하기 (Register an element)</h2>
 <p>Element를 등록하기 위해서는, <code class="highlighter-rouge">Polymer.Element</code> 를 확장한 ES6 클래스를 생성해야한다. 그리고 <code class="highlighter-rouge">customElements.define</code> 메서드를 호출해야한다. 이 메서드는 새로운 element를 브라우저에 등록한다. Element 등록할 때는 element의 이름과 클래스 이름을 같게 만들고 property와 메서드를 추가한다. 커스텀 element의 이름은 <strong>반드시 ASCII 문자로 시작해야 하며 대쉬(-)를 포함해야 한다.</strong></p>
 
 <p><strong>custom-element.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;script&gt;</span>
   <span class="c1">// Define the class for a new element called custom-element</span>
-  <span class="kr">class</span> <span class="nx">CustomElement</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-    <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"custom-element"</span><span class="p">;</span> <span class="p">}</span>
-    <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
+  <span class="kd">class</span> <span class="nx">CustomElement</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"custom-element"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">();</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">"I'm a custom-element."</span><span class="p">;</span>
       <span class="p">}</span>
   <span class="p">}</span>
   <span class="c1">// Register the new element with the browser</span>
   <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">CustomElement</span><span class="p">.</span><span class="nx">is</span><span class="p">,</span> <span class="nx">CustomElement</span><span class="p">);</span>
 <span class="nt">&lt;/script&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -123,8 +122,7 @@
     <span class="nt">&lt;custom-element&gt;&lt;/custom-element&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>이 예제는 <code class="highlighter-rouge">&lt;custom-element&gt;</code> 를 추가하기 위해서, 그것이 초기화 될 때 lifecycle 콜백을 사용한다. 커스텀 element의 초기화가 끝나면, <code class="highlighter-rouge">ready</code> lifecycle 콜백이 호출된다. 당신은 element 가 생성된 이후에, 단 한번 <code class="highlighter-rouge">ready</code> 콜백을 사용할 수 있다.</p>
 
@@ -132,11 +130,11 @@
 
 <p><a href="https://www.polymer-project.org/2.0/docs/devguide/registering-elements#lifecycle-callbacks">Learn more : Lifecycle Callbacks</a></p>
 
-<h2 id="shadow-dom-">Shadow DOM 추가하기</h2>
+<h2 id="shadow-dom-추가하기">Shadow DOM 추가하기</h2>
 <p>수많은 element는 내부의 DOM nodes를 포함하고 있다. DOM nodes 는 element의 UI와 행동을 수행한다. 당신은 당신의 element에 shadow DOM tree를 생성하기 위해서 Polymer’s DOM 템플릿을 사용할 수 있다.</p>
 
 <p><strong>dom-element.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"dom-element"</span><span class="nt">&gt;</span>
 
@@ -145,18 +143,17 @@
   <span class="nt">&lt;/template&gt;</span>
 
   <span class="nt">&lt;script&gt;</span>
-    <span class="kr">class</span> <span class="nx">DomElement</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"dom-element"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">DomElement</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"dom-element"</span><span class="p">;</span> <span class="p">}</span>
     <span class="p">}</span>
     <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">DomElement</span><span class="p">.</span><span class="nx">is</span><span class="p">,</span> <span class="nx">DomElement</span><span class="p">);</span>
   <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;/dom-module&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -166,18 +163,17 @@
     <span class="nt">&lt;dom-element&gt;&lt;/dom-element&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="https://www.polymer-project.org/2.0/docs/devguide/dom-template">Learn more : DOM Templating</a></p>
 
-<h2 id="shadow-dom--1">Shadow DOM 조립하기</h2>
+<h2 id="shadow-dom-조립하기">Shadow DOM 조립하기</h2>
 <p>Shadow DOM은 구성을 조작할 수 있도록 해준다. Element의 자식은 분산될 수 있는데, 마치 shadow DOM tree에 삽입된 것처럼 그려진다.
 이 예제는 단순한 태그를 생성하는데, 이것은 이미지를 스타일 추가된 <code class="highlighter-rouge">&lt;div&gt;</code>로 감싼 태그이다.</p>
 
 <p><strong>picture-frame.html</strong></p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"picture-frame"</span><span class="nt">&gt;</span>
 
@@ -198,19 +194,18 @@
   <span class="nt">&lt;/template&gt;</span>
 
   <span class="nt">&lt;script&gt;</span>
-    <span class="kr">class</span> <span class="nx">PictureFrame</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"picture-frame"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">PictureFrame</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"picture-frame"</span><span class="p">;</span> <span class="p">}</span>
     <span class="p">}</span>
     <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">PictureFrame</span><span class="p">.</span><span class="nx">is</span><span class="p">,</span> <span class="nx">PictureFrame</span><span class="p">);</span>
   <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;/dom-module&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -222,8 +217,7 @@
     <span class="nt">&lt;/picture-frame&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p><strong>Note :</strong> <code class="highlighter-rouge">&lt;dom-module&gt;</code> 내부에서 정의된 CSS는 해당 element의 shadow DOM의 범위에 한한다. 따라서 여기서 정의된 div 규칙도 <code class="highlighter-rouge">&lt;picture-frame&gt;</code> 내부의 <code class="highlighter-rouge">&lt;div&gt;</code> 태그에서만 적용된다.</p>
@@ -231,13 +225,13 @@
 
 <p><a href="https://www.polymer-project.org/2.0/docs/devguide/shadow-dom#shadow-dom-and-composition">Learn more : Composition &amp; Distribution</a></p>
 
-<h2 id="section">데이터바인딩 사용하기</h2>
+<h2 id="데이터바인딩-사용하기">데이터바인딩 사용하기</h2>
 <p>당연하게도, 정적인 shadow DOM을 사용하는 것으로는 충분하지 않다. 당신은 보통 당신의 element가 shadow DOM을 동적으로 업데이트 하기를 원할것이다.</p>
 
 <p>데이터바인딩은 당신의 element 변화를 빠르게 전달하고 boilerplate 코드를 줄이기에 아주 좋은 방법이다. 당신은 컴포넌트에 작성된 property들을 <code class="highlighter-rouge">(double-mustache) 문법을 통해서 바인드할 수 있다.</code>는 그 괄호 안의 값이 가리키는 property 값에 의해서 대체된다.</p>
 
 <p><strong>name-tag.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- import polymer-element --&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- import polymer-element --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"name-tag"</span><span class="nt">&gt;</span>
@@ -247,12 +241,12 @@
   <span class="nt">&lt;/template&gt;</span>
   
   <span class="nt">&lt;script&gt;</span>
-    <span class="kr">class</span> <span class="nx">NameTag</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"name-tag"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">NameTag</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"name-tag"</span><span class="p">;</span> <span class="p">}</span>
       
       <span class="c1">// set this element's owner property</span>
-      <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
+      <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">();</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">owner</span> <span class="o">=</span> <span class="s2">"Daniel"</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
@@ -260,11 +254,10 @@
     <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">NameTag</span><span class="p">.</span><span class="nx">is</span><span class="p">,</span> <span class="nx">NameTag</span><span class="p">);</span>
   <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;/dom-module&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -274,17 +267,16 @@
     <span class="nt">&lt;name-tag&gt;&lt;/name-tag&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="https://www.polymer-project.org/2.0/docs/devguide/data-binding">Learn more : Data Binding</a></p>
 
-<h2 id="declare-a-property">프로퍼티의 선언(Declare a property)</h2>
+<h2 id="프로퍼티의-선언declare-a-property">프로퍼티의 선언(Declare a property)</h2>
 <p>Property는 element의 공개 API에서 중요한 부분이다. Polymer의 선언된 property는 수많은 공통패턴을 제공한다. 예를들면 기본값을 셋팅하고, 마크업으로부터 property를 설정하고, property 변화를 관찰하는 것 등을 제공한다.
 아래 예제는 위 마지막 예제에서 <code class="highlighter-rouge">owner</code> 프로퍼티를 선언한다. 또한 <code class="highlighter-rouge">index.html</code> 마크업으로부터 owner property 설정하는 것을 보여준다.</p>
 
 <p><strong>configurable-name-tag.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 
 <span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"configurable-name-tag"</span><span class="nt">&gt;</span>
 
@@ -294,10 +286,10 @@
   <span class="nt">&lt;/template&gt;</span>
   
   <span class="nt">&lt;script&gt;</span>
-    <span class="kr">class</span> <span class="nx">ConfigurableNameTag</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"configurable-name-tag"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">ConfigurableNameTag</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"configurable-name-tag"</span><span class="p">;</span> <span class="p">}</span>
       <span class="c1">// configure owner property</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">properties</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">properties</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
           <span class="na">owner</span><span class="p">:</span> <span class="p">{</span>
             <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
@@ -310,11 +302,10 @@
   <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;/dom-module&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -326,17 +317,16 @@
     <span class="nt">&lt;configurable-name-tag</span> <span class="na">owner=</span><span class="s">"Scott"</span><span class="nt">&gt;&lt;/configurable-name-tag&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="https://www.polymer-project.org/2.0/docs/devguide/properties">Learn more : Declared Properties</a></p>
 
-<h2 id="bind-to-a-property">프로퍼티 바인딩 하기(Bind to a property)</h2>
+<h2 id="프로퍼티-바인딩-하기bind-to-a-property">프로퍼티 바인딩 하기(Bind to a property)</h2>
 <p>다음 콘텐츠에 덧붙이자면, 당신은 element의 property에 바인딩을 할 수 있다(<code class="highlighter-rouge">property-name="[[binding]]"</code>을 이용해서). Polymer property는 선택적으로 양방향 바인딩을 지원할 수 있는데, <code class="highlighter-rouge">property-name=""</code> 과 같이 표현한다.
 이 예제는 양방향 바인딩을 사용한다 : 커스텀 element인 <code class="highlighter-rouge">iron-input</code>에 <code class="highlighter-rouge">owner</code> property를 바인딩 해서 사용자 타입에 따라서 업데이트 된다.</p>
 
 <p><strong>editable-name-tag.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/iron-input+polymerelements+:2.0-preview/shadycss+webcomponents+1.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/iron-input+polymerelements+:2.0-preview/shadycss+webcomponents+1.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 <span class="c">&lt;!-- import the iron-input element --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/iron-input+polymerelements+:2.0-preview/shadycss+webcomponents+1.0.0-rc.2/components/iron-input/iron-input.html"</span><span class="nt">&gt;</span>
 
@@ -353,11 +343,11 @@
   <span class="nt">&lt;/template&gt;</span>
 
   <span class="nt">&lt;script&gt;</span>
-    <span class="kr">class</span> <span class="nx">EditableNameTag</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"editable-name-tag"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">EditableNameTag</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"editable-name-tag"</span><span class="p">;</span> <span class="p">}</span>
       
       <span class="c1">// configure the owner property</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">properties</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">properties</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
           <span class="na">owner</span><span class="p">:</span> <span class="p">{</span>
             <span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
@@ -371,11 +361,10 @@
   <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;/dom-module&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -385,18 +374,17 @@
     <span class="nt">&lt;editable-name-tag&gt;&lt;/editable-name-tag&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <blockquote>
   <p><strong>Note :</strong> <code class="highlighter-rouge">iron-input</code> 은 기본태그인 <code class="highlighter-rouge">&lt;input&gt;</code>을 감싸고, 양방향 바인딩과 값 확인(validation)을 제공한다.</p>
 </blockquote>
 
-<h2 id="dom-repeat---"><code class="highlighter-rouge">&lt;dom-repeat&gt;</code> 사용해서 템플릿 반복하기</h2>
+<h2 id="dom-repeat-사용해서-템플릿-반복하기"><code class="highlighter-rouge">&lt;dom-repeat&gt;</code> 사용해서 템플릿 반복하기</h2>
 <p>템플릿 반복자(<code class="highlighter-rouge">dom-repeat</code>)는 배열(array)로 바인드하는데 특화된 템플릿이다. 이것은 템플릿의 콘텐츠들을 배열의 항목으로 포함하는 하나의 인스턴스(instance)를 생성한다.</p>
 
 <p><strong>employee-list.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="c">&lt;!-- import polymer-element --&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- import polymer-element --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span>  <span class="na">href=</span><span class="s">"https://polygit.org/polymer+2.0.0-rc.2/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
 
 <span class="c">&lt;!-- import template repeater --&gt;</span> 
@@ -413,12 +401,12 @@
     <span class="nt">&lt;/template&gt;</span>
   <span class="nt">&lt;/template&gt;</span>
   <span class="nt">&lt;script&gt;</span>
-    <span class="kr">class</span> <span class="nx">EmployeeList</span> <span class="kr">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
-      <span class="kr">static</span> <span class="nx">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"employee-list"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">EmployeeList</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">"employee-list"</span><span class="p">;</span> <span class="p">}</span>
       
       <span class="c1">// set this element's employees property</span>
-      <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
+      <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">();</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">employees</span> <span class="o">=</span> <span class="p">[</span>
           <span class="p">{</span><span class="na">first</span><span class="p">:</span> <span class="s1">'Bob'</span><span class="p">,</span> <span class="na">last</span><span class="p">:</span> <span class="s1">'Li'</span><span class="p">},</span>
           <span class="p">{</span><span class="na">first</span><span class="p">:</span> <span class="s1">'Ayesha'</span><span class="p">,</span> <span class="na">last</span><span class="p">:</span> <span class="s1">'Johnson'</span><span class="p">},</span>
@@ -431,11 +419,10 @@
   <span class="nt">&lt;/script&gt;</span>
 
 <span class="nt">&lt;/dom-module&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><strong>index.html</strong></p>
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;head&gt;</span>
     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/webcomponentsjs+1.0.0-rc.5/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -445,8 +432,7 @@
     <span class="nt">&lt;employee-list&gt;&lt;/employee-list&gt;</span>
   <span class="nt">&lt;/body&gt;</span>
 <span class="nt">&lt;/html&gt;</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p><a href="https://www.polymer-project.org/2.0/docs/devguide/templates">Learn more : Template Repeater</a></p>
 
@@ -476,12 +462,12 @@ s.setAttribute('data-timestamp', +new Date());
 
   <div class="wrapper">
 
-    <h2 class="footer-heading">골치의 블로그</h2>
+    <h2 class="footer-heading">GOLCH</h2>
 
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
         <ul class="contact-list">
-          <li>골치의 블로그</li>
+          <li>GOLCH</li>
           <li><a href="mailto:p2r64h32@gmail.com">p2r64h32@gmail.com</a></li>
         </ul>
       </div>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Style an element's shadow DOM (번역)</title>
+  <meta name="description" content="원문보기 : https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="canonical" href="http://localhost:4000/polymer/2017/05/02/Style-an-element's-shadow-DOM.html">
+  <link rel="alternate" type="application/rss+xml" title="GOLCH" href="http://localhost:4000/feed.xml">
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-76613132-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">GOLCH</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">블로그에 관하여</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Style an element's shadow DOM (번역)</h1>
+    <p class="post-meta"><time datetime="2017-05-02T12:10:20+09:00" itemprop="datePublished">May 2, 2017</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>원문보기 : <a href="https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom">https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom</a></p>
+
+<h1 id="당신의-엘리먼트에-스타일을-입히기">당신의 엘리먼트에 스타일을 입히기</h1>
+
+<p>Polymer는 DOM templating과 shadow DOM API를 지원한다. 당신의 커스텀 엘리먼트를 위한 DOM template을 제공하고 싶을 때, Polymer는 당신의 엘리먼트를 위해 제공한 템플릿의 콘텐츠를 복사한다.</p>
+
+<p>이것이 그 예제이다 :</p>
+
+<p><strong>custom-element.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Import polymer-element --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/polymer/polymer-element.html"</span><span class="nt">&gt;</span>
+
+<span class="c">&lt;!-- Create a template for the custom element --&gt;</span>
+<span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">'custom-element'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Heading!<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>We are elements in custom-element's local DOM.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+
+  <span class="c">&lt;!-- Register the element --&gt;</span>
+  <span class="nt">&lt;script&gt;</span>
+    <span class="kd">class</span> <span class="nx">CustomElement</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+      <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">"custom-element"</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">CustomElement</span><span class="p">.</span><span class="nx">is</span><span class="p">,</span> <span class="nx">CustomElement</span><span class="p">);</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Load the polyfills --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://polygit.org/polymer+:2.0-preview/webcomponentsjs+:v1/shadydom+webcomponents+:master/shadycss+webcomponents+:master/custom-elements+webcomponents+:master/components/webcomponentsjs/webcomponents-loader.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+
+<span class="c">&lt;!-- Load the custom element --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"custom-element.html"</span><span class="nt">&gt;</span>
+<span class="c">&lt;!-- Drop the custom element on the page --&gt;</span>
+<span class="nt">&lt;custom-element&gt;&lt;/custom-element&gt;</span>
+</code></pre></div></div>
+
+<p>템플릿 안의 HTML 엘리먼트는 당신의 커스텀 엘리먼트의 shadow DOM에서는 자식(children)이 된다. Shadow DOM은 shadow DOM의 내부에 있는 엘리먼트와 외부에 있는 엘리먼트가 매치되지 않는 캡슐화 메커니즘을 제공한다.</p>
+
+<p>이와같이, shadow DOM 내부의 스타일링 법칙은 외부의 엘리먼트에 영향을 줄 정도로 “새 나갈” 수 없다.</p>
+
+<p>Shadow DOM은 커스텀 엘리먼트의 스타일링 법칙의 캡슐화를 허락한다. 당신은 엘리먼트 범위 밖에 적용될 걱정없이 폰트나 글자 색, 클래스와 같은 엘리먼트의 스타일링 정보를 자유롭게 정의할 수 있다.</p>
+
+<p>이것이 그 예제이다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">'x-foo'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="c">&lt;!-- Encapsulated, element-level stylesheet --&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nt">p</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nc">.myclass</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>I'm a shadow DOM child element of x-foo.<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"myclass"</span><span class="nt">&gt;</span>So am I.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+<span class="c">&lt;!-- Document-level stylesheet --&gt;</span>
+<span class="nt">&lt;style&gt;</span>
+  <span class="nc">.myclass</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+<span class="c">&lt;!-- The following paragraph uses the document-level stylesheet. --&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"myclass"</span><span class="nt">&gt;</span>I have nothing to do with x-foo. Because of encapsulation, x-foo's styles won't leak to me.<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>Polymer에서 적용된 Shadow DOM의 더 자세한 설명을 보고 싶다면, 이 링크 <a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom">Shadow DOM concepts</a> 를 보라.</p>
+
+<p>Shadow DOM의 v1 API를 보고 싶다면, 이 링크 <a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom">Shadow DOM v1 : Self-Contained Web Components.</a> 를 보라.</p>
+
+<h2 id="문서레벨document-level-스타일로부터-상속받아-사용하기">문서레벨(document-level) 스타일로부터 상속받아 사용하기</h2>
+
+<p>HTML 문서 내에서 사용할 때, 당신의 엘리먼트는 여전히 부모 엘리먼트에 적용된 모든 스타일링 정보를 상속받고 있을 것이다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">'x-foo'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      I inherit styles from x-foo's parent in the light DOM.
+      I'm also sans-serif and blue.
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+<span class="c">&lt;!-- Document-level stylesheet --&gt;</span>
+<span class="nt">&lt;style&gt;</span>
+  <span class="nt">p</span> <span class="p">{</span>
+    <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+
+<span class="c">&lt;!-- This paragraph uses document-level styles: --&gt;</span>
+<span class="nt">&lt;p&gt;</span>I'm sans-serif and blue.<span class="nt">&lt;/p&gt;</span>
+
+<span class="c">&lt;!-- And the text within x-foo inherits style from the paragraph element: --&gt;</span>
+<span class="nt">&lt;p&gt;&lt;x-foo&gt;&lt;/x-foo&gt;&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<p>Shadow DOM 내부에서 선언된 스타일은 밖에서 선언된 스타일을 오버라이딩 한다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">'x-foo'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="c">&lt;!-- Encapsulated, element-level stylesheet --&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nt">p</span> <span class="p">{</span>
+        <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>I'm green.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+<span class="c">&lt;!-- Document-level stylesheet --&gt;</span>
+<span class="nt">&lt;style&gt;</span>
+  <span class="nt">p</span> <span class="p">{</span>
+    <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;p&gt;</span>I'm blue.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;&lt;x-foo&gt;&lt;/x-foo&gt;&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<h2 id="호스트-엘리먼트에-스타일을-적용하기">호스트 엘리먼트에 스타일을 적용하기</h2>
+
+<p>Shadow DOM이 붙어 있는 엘리먼트는 호스트라고 알려져 있다. 호스트에 스타일을 입히기 위해서, <code class="highlighter-rouge">:host</code> 선택자를 사용한다.</p>
+
+<p>호스트 엘리먼트의 상속가능한 프로퍼티는 자식에게 적용된 shadow tree를 따라 상속되어 내려간다.</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">'x-foo'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="c">&lt;!-- Encapsulated, element-level stylesheet --&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">:host</span> <span class="p">{</span>
+        <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+        <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>
+        <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>I'm green.<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;div&gt;</span>I'm green too.<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;span&gt;</span>We're all green...<span class="nt">&lt;/span&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p>당신은 외부로부터 가져온 스타일을 호스트 엘리먼트에 적용할 수도 있다. 예를들어, 타입 선택자를 사용한다.</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">x-foo</span> <span class="p">{</span>
+	<span class="nl">background-color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>호스트 엘리먼트에 스타일을 적용하기 위해 CSS 선택자 사용하기</strong></p>
+
+<p>당신은 언제, 어떻게 호스트에 스타일을 적용할지를 선택하기 위해서 CSS 선택자를 사용할 수 있다. 이 코드 샘플에는 :</p>
+
+<ul>
+  <li><code class="highlighter-rouge">:host</code> 선택자와 일치하는 모든 <code class="highlighter-rouge">&lt;x-foo&gt;</code> 엘리먼트</li>
+  <li><code class="highlighter-rouge">:host(.blue)</code> 선택자와 일치하는 <code class="highlighter-rouge">blue</code> 클래스의 <code class="highlighter-rouge">&lt;x-foo&gt;</code> 엘리먼트</li>
+  <li><code class="highlighter-rouge">:host(.red)</code> 선택자와 일치하는 <code class="highlighter-rouge">red</code> 클래스의 <code class="highlighter-rouge">&lt;x-foo&gt;</code> 엘리먼트</li>
+  <li><code class="highlighter-rouge">:host(.hover)</code> 선택자와 호버될 때 일치하는 <code class="highlighter-rouge">&lt;x-foo&gt;</code> 엘리먼트</li>
+</ul>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">:host</span> <span class="p">{</span> <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span> <span class="p">}</span>
+      <span class="nd">:host</span><span class="o">(</span><span class="nc">.blue</span><span class="o">)</span> <span class="p">{</span><span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;}</span>
+      <span class="nd">:host</span><span class="o">(</span><span class="nc">.red</span><span class="o">)</span> <span class="p">{</span><span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;}</span>
+      <span class="nd">:host</span><span class="o">(</span><span class="nd">:hover</span><span class="o">)</span> <span class="p">{</span><span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Hi, from x-foo!<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo</span> <span class="na">class=</span><span class="s">"blue"</span><span class="nt">&gt;&lt;/x-foo&gt;</span>
+<span class="nt">&lt;x-foo</span> <span class="na">class=</span><span class="s">"red"</span><span class="nt">&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">:host</code> 선택자 뒤에 오는 자손 선택자는 shadow tree의 엘리먼트와 매치된다. 이 예제에서, 호스트가 “warning” 클래스를 가진다면, CSS 선택자는 shadow tree에 있는 모든 <code class="highlighter-rouge">p</code> 엘리먼트에 적용된다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">:host</span><span class="o">(</span><span class="nc">.warning</span><span class="o">)</span> <span class="nt">p</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Make this text red if x-foo has class "warning", and black otherwise.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo</span> <span class="na">class=</span><span class="s">"warning"</span><span class="nt">&gt;&lt;/x-foo&gt;</span>
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">:host</code> 선택자를 이용해서 스타일 적용하는 것은 shadow tree 내부의 법칙이 외부의 shadow tree 엘리먼트에 영향을 미칠 수 있는 두 가지 중 하나이다. 두 번째 인스턴스는 자식에게 분배된 스타일링 법칙을 적용하기 위해서  <code class="highlighter-rouge">::slotted()</code> 문법을 사용한다. 자세한 내용은 이 링크  <a href="https://developers.google.com/web/fundamentals/getting-started/primers/shadowdom#composition_slot"><em>Composition and slots</em> in Eric Bidelman’s article on shadow DOM</a> 를 보라.</p>
+
+<h2 id="style-slotted-content-distributed-children">Style slotted content (distributed children)</h2>
+
+<p>당신은 런타임에도 다음의 문법을 사용함으로써 엘리먼트의 템플릿에 슬롯을 만들 수 있다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">:host</span><span class="o">(</span><span class="nc">.warning</span><span class="o">)</span> <span class="nt">p</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Make this text red if x-foo has class "warning", and black otherwise.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">class</span> <span class="nx">XFoo</span> <span class="kd">extends</span> <span class="nx">Polymer</span><span class="p">.</span><span class="nx">Element</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="kd">get</span> <span class="nx">is</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s2">"x-foo"</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">customElements</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">XFoo</span><span class="p">.</span><span class="nx">is</span><span class="p">,</span> <span class="nx">XFoo</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo</span> <span class="na">class=</span><span class="s">"warning"</span><span class="nt">&gt;&lt;/x-foo&gt;</span>
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p>slotted content에 스타일을 적용하려면, <code class="highlighter-rouge">::slotted()</code> 문법을 사용한다.</p>
+
+<p><code class="highlighter-rouge">::slotted(*)</code> 모든 slotted content를 선택한다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">::slotted</span><span class="o">(*)</span> <span class="p">{</span>
+        <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>
+      <span class="nt">&lt;div&gt;&lt;slot</span> <span class="na">name=</span><span class="s">'heading1'</span><span class="nt">&gt;&lt;/slot&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'para'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;x-foo&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"heading1"</span><span class="nt">&gt;</span>Heading 1. I'm green.<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para"</span><span class="nt">&gt;</span>Paragraph text. I'm green too.<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p>또한 엘리먼트 타입(태그 이름)에 의해서 선택할 수도 있다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">::slotted</span><span class="o">(</span><span class="nt">h1</span><span class="o">)</span> <span class="p">{</span>
+        <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nd">::slotted</span><span class="o">(</span><span class="nt">p</span><span class="o">)</span> <span class="p">{</span>
+        <span class="nl">font-family</span><span class="p">:</span> <span class="nb">sans-serif</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'heading1'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+    <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'para'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo&gt;</span>
+  <span class="nt">&lt;h1</span> <span class="na">slot=</span><span class="s">"heading1"</span><span class="nt">&gt;</span>Heading 1. I'm green.<span class="nt">&lt;/h1&gt;</span>
+  <span class="nt">&lt;p</span> <span class="na">slot=</span><span class="s">"para"</span><span class="nt">&gt;</span>Paragraph text. I'm blue.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p>클래스에 의해서 선택하는 것도 가능하다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nd">::slotted</span><span class="o">(</span><span class="nc">.green</span><span class="o">)</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'para1'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'para2'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para1"</span> <span class="na">class=</span><span class="s">"green"</span><span class="nt">&gt;</span>I'm green!<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para1"</span><span class="nt">&gt;</span>I'm not green.<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para2"</span> <span class="na">class=</span><span class="s">"green"</span><span class="nt">&gt;</span>I'm green too.<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para2"</span><span class="nt">&gt;</span>I'm not green.<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p>그리고 slot의 이름으로도 선택할 수 있다 :</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nt">slot</span><span class="o">[</span><span class="nt">name</span><span class="o">=</span><span class="s2">'para1'</span><span class="o">]</span><span class="nd">::slotted</span><span class="o">(*)</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'para1'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      <span class="nt">&lt;slot</span> <span class="na">name=</span><span class="s">'para2'</span><span class="nt">&gt;&lt;/slot&gt;</span>
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para1"</span><span class="nt">&gt;</span>I'm green!<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">slot=</span><span class="s">"para2"</span><span class="nt">&gt;</span>I'm not green.<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<h1 id="엘리먼트-간-스타일-공유하기">엘리먼트 간 스타일 공유하기</h1>
+
+<h2 id="스타일-모듈-사용하기">스타일 모듈 사용하기</h2>
+
+<p>스타일을 공유하기 위해서 준비된 방법은 <em>스타일 모듈</em>과 함께하는 것이다. 당신은 스타일 모듈로 패키지를 만들고, 엘리먼트 간 이를 공유할 수 있다.</p>
+
+<p>스타일 모듈을 만들기 위해서, 아래처럼 당신의 <code class="highlighter-rouge">&lt;dom-module&gt;</code> 과 <code class="highlighter-rouge">&lt;template&gt;</code> 엘리먼트의 스타일 블록을 묶어야 한다 :</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"my-style-module"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">Styles</span> <span class="nt">to</span> <span class="nt">share</span> <span class="nt">go</span> <span class="nt">here</span><span class="o">!</span> <span class="nt">--</span><span class="o">&gt;</span>
+    <span class="nt">&lt;/style&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p>스타일을 사용할 엘리먼트를 만들 때, 스타일 블록의 오프닝 태그에 스타일 모듈을 포함시킨다 :</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"new-element"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style </span><span class="na">include=</span><span class="s">"my-style-module"</span><span class="nt">&gt;</span>
+      <span class="o">&lt;!</span><span class="nt">--</span> <span class="nt">Any</span> <span class="nt">additional</span> <span class="nt">styles</span> <span class="nt">go</span> <span class="nt">here</span> <span class="nt">--</span><span class="o">&gt;</span>
+    <span class="nt">&lt;/style&gt;</span>
+    <span class="c">&lt;!-- The rest of your element template goes here --&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p>당신은 아마도 스타일 모듈을 별도의 html 파일로 패키지화 하기를 원할 것이다. 그 경우에는 스타일을 사용하는 엘리먼트에 그 파일을 임포트 할 필요가 있다.</p>
+
+<p>아래가 그 예제이다 :</p>
+
+<p><strong>my-colors.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Define some custom properties in a style module. --&gt;</span>
+<span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">'my-colors'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+      <span class="nt">p</span><span class="nc">.red</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nt">p</span><span class="nc">.green</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nt">p</span><span class="nc">.blue</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Import the styles from the style module my-colors --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"my-colors.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="c">&lt;!-- Include the imported styles from my-colors --&gt;</span>
+    <span class="nt">&lt;style </span><span class="na">include=</span><span class="s">"my-colors"</span><span class="nt">&gt;&lt;/style&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"red"</span><span class="nt">&gt;</span>I wanna be red<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"green"</span><span class="nt">&gt;</span>I wanna be green<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"blue"</span><span class="nt">&gt;</span>I wanna be blue<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<h2 id="외부의-스타일시트-사용하기-사용되지-않을deprecated">외부의 스타일시트 사용하기 (사용되지 않을:deprecated)</h2>
+
+<blockquote>
+  <p><strong>앞으로 사라질 기능.</strong> 이 실험적인 기능은 <a href="https://www.polymer-project.org/2.0/docs/devguide/style-shadow-dom#style-modules">style modules</a> 에 우호적이다. 이것은 아직 지원되지만, 미래에는 지원이 없어질 예정이다.</p>
+</blockquote>
+
+<p>Polymer는 외부의 엘리먼트의 local DOM에 적용될 스타일시트 로드를 지원하는 실험적인 기능을 포함한다. 이것은 스타일을 분리하고, 엘리먼트 간 공통 스타일을 공유하는 것을 좋아하거나, 스타일 pre-processing tool을 사용하는 개발자에게 일반적으로 편리하다. 이 문법은 전형적으로 스타일시트가 어떻게 로드되는지에 관해서 약간 다르다. 이것은 Inline 스타일에 적절하게 끼워지거나 주입된 스타일시트 텍스트를 로드하기 위한 기능 영향력으로서 HTML import(혹은 적절한 곳에 사용된 HTML import polyfill) 이다.</p>
+
+<p>당신의 polymer 엘리먼트의 local DOM에 적용할 원격의 스타일시트를 포함하기 위해서는, 외부의 스타일시트를 참조하는 특별한 HTML import <code class="highlighter-rouge">&lt;link&gt;</code> 태그와 <code class="highlighter-rouge">type="css"</code> 를 당신의 <code class="highlighter-rouge">&lt;dom-module&gt;</code>에 넣어야 한다.</p>
+
+<p>예를 들어 :</p>
+
+<p><strong>style.css</strong></p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.red</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.green</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.blue</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">blue</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Include the styles, and use them in x-foo. --&gt;</span>
+<span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">type=</span><span class="s">"css"</span> <span class="na">href=</span><span class="s">"style.css"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"red"</span><span class="nt">&gt;</span>I wanna be red<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"green"</span><span class="nt">&gt;</span>I wanna be green<span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"blue"</span><span class="nt">&gt;</span>I wanna be blue<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<h1 id="문서-레벨에서-custom-style-사용하기">문서 레벨에서 <code class="highlighter-rouge">custom-style</code> 사용하기</h1>
+
+<p>현재의 Shadow DOM v1 스펙을 구현한 브라우저는 자동으로 스타일을 캡슐화하고, 엘리먼트에서의 범위를 정할 것이다.</p>
+
+<p>몇몇 브라우저는 Shadow DOM v1 스펙을 구현하지 않았다. 이런 브라우저에서 당신의 앱과 엘리먼트가 정확히 보여지는지 확실히 하기 위해서는, 당신의 엘리먼트의 local DOM에서 스타일 정보가 새지 않는다는 것을 확실히 하기 위해서 <code class="highlighter-rouge">custom-style</code> 을 사용하는 것이 필요할 것이다.</p>
+
+<p><code class="highlighter-rouge">custom-style</code>은 브라우저가 이 스펙을 지원하지 않더라도 당신의 앱과 엘리먼트가 Shadow DOM v1 스펙에서 예상대로 동작한다는 것을 확실히 하기 위해서 polyfill의 집합을 가능하게 한다.</p>
+
+<p>모든 브라우저에서 당신의 스타일이 Shadow DOM v1 스펙을 따라서 동작한다는 것을 확신하려면 <em>문서 레벨</em>의 스타일을 정의할 때 <code class="highlighter-rouge">custom-style</code>을 사용한다. <code class="highlighter-rouge">custom-style</code>은 <code class="highlighter-rouge">polymer.Element</code>를 포함하지 않는다. 그리고 반드시 각각 import 되어야 한다. <code class="highlighter-rouge">custom-style</code>은 레거시의 <code class="highlighter-rouge">polymer.html</code> 을 포함한다.</p>
+
+<p><em>Note : 당신은 메인 문서의 스타일을 정의하기 위해서는 오직 <code class="highlighter-rouge">custom-style</code>만을 사용해야 한다. 엘리먼트의 local DOM의 스타일을 정의하기 위해서는 그냥 <code class="highlighter-rouge">&lt;style&gt;</code> 블록을 사용한다.</em></p>
+
+<h2 id="예시">예시</h2>
+
+<p>첫 번째 코드 샘플에서, 브라우저가 Shadow DOM v1 스펙을 지원하지 않으면 <code class="highlighter-rouge">p</code> 엘리먼트의 스타일은 B 문단으로 새어나간다. 두 번째 코드 샘플에서, 개발자가 <code class="highlighter-rouge">custom-style</code> 을 이용해서 스타일 블록을 감싸면, 새어나가지 않는다.</p>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;p&gt;</span>
+      Paragraph B: I am in the shadow DOM of x-foo.
+      If your browser implements the Shadow DOM v1 specs,
+      I am black; otherwise, I'm red.
+    <span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;style&gt;</span>
+  <span class="nt">p</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;p&gt;</span>Paragraph A: I am in the main document. I am red.<span class="nt">&lt;/p&gt;</span>
+
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<p><strong>x-foo.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dom-module</span> <span class="na">id=</span><span class="s">"x-foo"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;template&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Paragraph B: I am in the local DOM of x-foo. I am black on all browsers.<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/template&gt;</span>
+  ...
+<span class="nt">&lt;/dom-module&gt;</span>
+</code></pre></div></div>
+
+<p><strong>index.html</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c">&lt;!-- import custom-style --&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"/bower_components/polymer/lib/elements/custom-style.html"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"import"</span> <span class="na">href=</span><span class="s">"x-foo.html"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;custom-style&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">p</span> <span class="p">{</span>
+      <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/custom-style&gt;</span>
+<span class="nt">&lt;p&gt;</span>Paragraph A: I am in the main DOM. I am red.<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;x-foo&gt;&lt;/x-foo&gt;</span>
+</code></pre></div></div>
+
+<h2 id="문법과-호환성">문법과 호환성</h2>
+
+<p><code class="highlighter-rouge">custom-style</code>의 문법은 변경되었다. Polymer 2.x에서는, <code class="highlighter-rouge">&lt;custom-style&gt;</code> 은 엘리먼트를 감싼다. 당신은 Polymer 1.x와 다른 버전 간의 호환성이 보장되는 혼합 문법을 사용할 수 있다.</p>
+
+<p><strong>Polymer 2.x</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;custom-style&gt;</span>
+  <span class="nt">&lt;style&gt;</span>
+    <span class="nt">p</span> <span class="p">{</span>
+		<span class="err">...</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/custom-style&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Hibrid (1.x와 2.x 모두 사용 가능)</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;custom-style&gt;</span>
+  <span class="nt">&lt;style </span><span class="na">is=</span><span class="s">"custom-style"</span><span class="nt">&gt;</span>
+    <span class="nt">p</span> <span class="p">{</span>
+		<span class="err">...</span>
+    <span class="p">}</span>
+  <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/custom-style&gt;</span>
+</code></pre></div></div>
+
+<p><strong>Polymer 1.x</strong></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;style </span><span class="na">is=</span><span class="s">"custom-style"</span><span class="nt">&gt;</span>
+  <span class="nt">p</span> <span class="p">{</span>
+	  <span class="err">...</span>
+  <span class="p">}</span>
+<span class="nt">&lt;/style&gt;</span>
+</code></pre></div></div>
+
+
+  </div>
+  
+</article>
+
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//golch51.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+      </div>
+    </div>
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GOLCH</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>GOLCH</li>
+          <li><a href="mailto:p2r64h32@gmail.com">p2r64h32@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/golch"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">golch</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>개발자 골치의 블로그입니다. 주로 웹기술 관련 내용을 다룹니다.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
