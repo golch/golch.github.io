@@ -84,7 +84,7 @@ django 를 사용할때 MySQLdb 이걸 이용해서 DB연결을 하는 것이 �
 
 <p>따라서 MySQL 연동을 위해서는 다른 라이브러리를 사용해야 한다.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>pip install PyMySQL</code></pre></figure>
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nv">$ </span>pip <span class="nb">install </span>PyMySQL</code></pre></figure>
 
 <p>위 명령어로 설치하자. <a href="https://github.com/PyMySQL/PyMySQL" target="_blank">PyMySQL 참고</a></p>
 
@@ -102,8 +102,8 @@ django 로 돌아와서 settings.py 파일의 DATABASES 부분을 아래와 같�
 <span class="o">...</span> <span class="err">중략</span>
 
 
-<span class="c">#MySQL</span>
-<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1">#MySQL
+</span><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'default'</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">'ENGINE'</span><span class="p">:</span> <span class="s">'django.db.backends.mysql'</span><span class="p">,</span>
         <span class="s">'NAME'</span><span class="p">:</span> <span class="s">'inform_place'</span><span class="p">,</span>

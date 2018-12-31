@@ -1,6 +1,4 @@
-@font-face {
-  font-family: "Gidole-Regular";
-  src: url("D2Coding.ttf") format("truetype"); }
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 /**
  * Reset some basic elements
  */
@@ -14,7 +12,7 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-  font: 400 16px/1.5 "Gidole-Regular", Helvetica, Arial, sans-serif;
+  font: 400 14px/2.4 "Nanum Gothic Coding", Helvetica, Arial, sans-serif;
   color: #111;
   background-color: #ffffff;
   -webkit-text-size-adjust: 100%;
@@ -47,7 +45,7 @@ figure > img {
   display: block; }
 
 figcaption {
-  font-size: 14px; }
+  font-size: 12.25px; }
 
 /**
  * Lists
@@ -84,7 +82,7 @@ blockquote {
   color: #828282;
   border-left: 4px solid #e8e8e8;
   padding-left: 15px;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: -1px;
   font-style: italic; }
   blockquote > :last-child {
@@ -95,7 +93,7 @@ blockquote {
  */
 pre,
 code {
-  font-size: 15px;
+  font-size: 14px;
   border: 1px solid #e8e8e8;
   border-radius: 3px; }
 
@@ -172,7 +170,7 @@ pre {
     display: none; }
   .site-nav .page-link {
     color: #111;
-    line-height: 1.5; }
+    line-height: 2.4; }
     .site-nav .page-link:not(:last-child) {
       margin-right: 20px; }
   @media screen and (max-width: 600px) {
@@ -278,7 +276,7 @@ pre {
     margin-bottom: 30px; }
 
 .post-meta {
-  font-size: 14px;
+  font-size: 12.25px;
   color: #828282; }
 
 .post-link {
@@ -325,7 +323,8 @@ pre {
   color: #586e75; }
   .highlighter-rouge .highlight {
     font-size: 0.8em;
-    margin-bottom: 13px; }
+    margin-bottom: 13px;
+    padding-left: 10px; }
 
 /* Solarized Dark
 For use with Jekyll and Pygments

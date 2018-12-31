@@ -107,7 +107,7 @@
 
 <p>pip를 통한 설치 :</p>
 
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip install flask-login
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>flask-login
 </code></pre></div></div>
 
 <h2 id="어플리케이션-설정">어플리케이션 설정</h2>
@@ -128,7 +128,7 @@
 
 <p>당신은 <a href="#flask_login.LoginManager.user_loader">user_loader</a> 콜백함수를 제공하는 것이 필요할 것이다. 이 콜백함수는 세션에 저장된 유저 ID로부터 유저 객체를 다시 로드하는데 쓰인다. 이것은 유저의 unicode ID를 가져야 하며, 이에 상응하는 유저 객체를 리턴한다. 예제를 보자 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@login_manager.user_loader</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">login_manager</span><span class="o">.</span><span class="n">user_loader</span>
 <span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
 </code></pre></div></div>
@@ -163,23 +163,23 @@
 
 <p>예제 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/login'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
-    <span class="c"># Here we use a class of some kind to represent and validate our</span>
-    <span class="c"># client-side form data. For example, WTForms is a library that will</span>
-    <span class="c"># handle this for us, and we use a custom LoginForm to validate.</span>
-    <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span>
+    <span class="c1"># Here we use a class of some kind to represent and validate our
+</span>    <span class="c1"># client-side form data. For example, WTForms is a library that will
+</span>    <span class="c1"># handle this for us, and we use a custom LoginForm to validate.
+</span>    <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
-        <span class="c"># Login and validate the user.</span>
-        <span class="c"># user should be an instance of your `User` class</span>
-        <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="c1"># Login and validate the user.
+</span>        <span class="c1"># user should be an instance of your `User` class
+</span>        <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
 
         <span class="n">flask</span><span class="o">.</span><span class="n">flash</span><span class="p">(</span><span class="s">'Logged in successfully.'</span><span class="p">)</span>
 
         <span class="nb">next</span> <span class="o">=</span> <span class="n">flask</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'next'</span><span class="p">)</span>
-        <span class="c"># is_safe_url should check if the url is safe for redirects.</span>
-        <span class="c"># See http://flask.pocoo.org/snippets/62/ for an example.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_safe_url</span><span class="p">(</span><span class="nb">next</span><span class="p">):</span>
+        <span class="c1"># is_safe_url should check if the url is safe for redirects.
+</span>        <span class="c1"># See http://flask.pocoo.org/snippets/62/ for an example.
+</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_safe_url</span><span class="p">(</span><span class="nb">next</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">flask</span><span class="o">.</span><span class="n">abort</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">flask</span><span class="o">.</span><span class="n">redirect</span><span class="p">(</span><span class="nb">next</span> <span class="ow">or</span> <span class="n">flask</span><span class="o">.</span><span class="n">url_for</span><span class="p">(</span><span class="s">'index'</span><span class="p">))</span>
@@ -199,16 +199,16 @@
 
 <p>로그인 할 당신의 유저정보를 요청하는 화면은 <a href="#flask_login.login_required">login_required</a> 를 통해서 장식될 수 있다 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">"/settings"</span><span class="p">)</span>
-<span class="nd">@login_required</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/settings"</span><span class="p">)</span>
+<span class="o">@</span><span class="n">login_required</span>
 <span class="k">def</span> <span class="nf">settings</span><span class="p">():</span>
     <span class="k">pass</span>
 </code></pre></div></div>
 
 <p>유저가 로그아웃 할 준비가 되었다면 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.route</span><span class="p">(</span><span class="s">"/logout"</span><span class="p">)</span>
-<span class="nd">@login_required</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s">"/logout"</span><span class="p">)</span>
+<span class="o">@</span><span class="n">login_required</span>
 <span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
     <span class="n">logout_user</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">somewhere</span><span class="p">)</span>
@@ -239,10 +239,10 @@
 
 <p>만일 이 프로세스를 더 커스터마이징 하고싶다면, <a href="#flask_login.LoginManager.unauthorized_handler">LoginManager.unauthorized_handler</a>로 함수를 장식하라 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@login_manager.unauthorized_handler</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">login_manager</span><span class="o">.</span><span class="n">unauthorized_handler</span>
 <span class="k">def</span> <span class="nf">unauthorized</span><span class="p">():</span>
-    <span class="c"># do stuff</span>
-    <span class="k">return</span> <span class="n">a_response</span>
+    <span class="c1"># do stuff
+</span>    <span class="k">return</span> <span class="n">a_response</span>
 </code></pre></div></div>
 
 <h2 id="authorization-header를-사용한-로그인">Authorization header를 사용한 로그인</h2>
@@ -253,7 +253,7 @@
 
 <p>때때로 당신은 Authorization header를 활용한 기본 권한 로그인을 지원하기를 원할 것이다. header를 통한 로그인을 지원하려면 당신은 header_loader 콜백함수 제공이 필요할 것이다. 이 콜백은 user id 대신에 header 값을 받는다는 것을 제외하면, 당신의 user_loader 콜백과 동일게 동작해야 한다. 예제를 보자 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@login_manager.header_loader</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">login_manager</span><span class="o">.</span><span class="n">header_loader</span>
 <span class="k">def</span> <span class="nf">load_user_from_header</span><span class="p">(</span><span class="n">header_val</span><span class="p">):</span>
     <span class="n">header_val</span> <span class="o">=</span> <span class="n">header_val</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'Basic '</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -271,18 +271,18 @@
 
 <p>예를 들어, URL 인자와 <strong>Authorization</strong> header를 이용한 Basic Auth를 둘다 지원하는 것을 보자 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@login_manager.request_loader</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">login_manager</span><span class="o">.</span><span class="n">request_loader</span>
 <span class="k">def</span> <span class="nf">load_user_from_request</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 
-    <span class="c"># first, try to login using the api_key url arg</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'api_key'</span><span class="p">)</span>
+    <span class="c1"># first, try to login using the api_key url arg
+</span>    <span class="n">api_key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'api_key'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">api_key</span><span class="p">:</span>
         <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">user</span>
 
-    <span class="c"># next, try to login using Basic Auth</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Authorization'</span><span class="p">)</span>
+    <span class="c1"># next, try to login using Basic Auth
+</span>    <span class="n">api_key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Authorization'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">api_key</span><span class="p">:</span>
         <span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'Basic '</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -293,8 +293,8 @@
         <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">user</span>
 
-    <span class="c"># finally, return None if both methods did not login the user</span>
-    <span class="k">return</span> <span class="bp">None</span>
+    <span class="c1"># finally, return None if both methods did not login the user
+</span>    <span class="k">return</span> <span class="bp">None</span>
 </code></pre></div></div>
 
 <h2 id="익명-유저">익명 유저</h2>
@@ -324,7 +324,7 @@
 
 <p>user ID를 토큰을 기억하기 위한 값으로 사용하는 것은 당신이 사용자의 ID를 그들의 로그인 세션에서 유효하지 않은 값으로 변경해야 함을 의미한다. 이것을 개선하기 위한 한 방법은 사용자의 ID 대신 대체 세션 토큰을 사용하는 것이다. 예제를 보자 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@login_manager.user_loader</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">login_manager</span><span class="o">.</span><span class="n">user_loader</span>
 <span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="n">session_token</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">session_token</span><span class="o">=</span><span class="n">session_token</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
 </code></pre></div></div>
@@ -354,10 +354,10 @@
 
 <p>혹은 콜백함수를 제공함으로써 refresh를 처리한다 :</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@login_manager.needs_refresh_handler</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">login_manager</span><span class="o">.</span><span class="n">needs_refresh_handler</span>
 <span class="k">def</span> <span class="nf">refresh</span><span class="p">():</span>
-    <span class="c"># do stuff</span>
-    <span class="k">return</span> <span class="n">a_response</span>
+    <span class="c1"># do stuff
+</span>    <span class="k">return</span> <span class="n">a_response</span>
 </code></pre></div></div>
 
 <p>세션에 다시 “새로움” 마크를 붙이려면 <strong>confirm_login</strong> 함수를 콜한다.</p>
@@ -441,7 +441,7 @@
 
 <span class="n">app</span><span class="o">.</span><span class="n">session_interface</span> <span class="o">=</span> <span class="n">CustomSessionInterface</span><span class="p">()</span>
 
-<span class="nd">@user_loaded_from_header.connect</span>
+<span class="o">@</span><span class="n">user_loaded_from_header</span><span class="o">.</span><span class="n">connect</span>
 <span class="k">def</span> <span class="nf">user_loaded_from_header</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="n">g</span><span class="o">.</span><span class="n">login_via_header</span> <span class="o">=</span> <span class="bp">True</span>
 </code></pre></div></div>
