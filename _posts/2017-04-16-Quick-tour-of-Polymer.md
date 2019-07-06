@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 comments: true
 title: Quick tour of Polymer(번역)
 date:   2017-04-16 12:19:20 +0900
@@ -163,7 +163,7 @@ Shadow DOM은 구성을 조작할 수 있도록 해준다. Element의 자식은 
 ## 데이터바인딩 사용하기
 당연하게도, 정적인 shadow DOM을 사용하는 것으로는 충분하지 않다. 당신은 보통 당신의 element가 shadow DOM을 동적으로 업데이트 하기를 원할것이다.
 
-데이터바인딩은 당신의 element 변화를 빠르게 전달하고 boilerplate 코드를 줄이기에 아주 좋은 방법이다. 당신은 컴포넌트에 작성된 property들을 `{{}}` (double-mustache) 문법을 통해서 바인드할 수 있다. `{{}}`는 그 괄호 안의 값이 가리키는 property 값에 의해서 대체된다.
+데이터바인딩은 당신의 element 변화를 빠르게 전달하고 boilerplate 코드를 줄이기에 아주 좋은 방법이다. 당신은 컴포넌트에 작성된 property들을 `{% raw %}{{}}{% endraw %}` (double-mustache) 문법을 통해서 바인드할 수 있다. `{% raw %}{{}}{% endraw %}`는 그 괄호 안의 값이 가리키는 property 값에 의해서 대체된다.
 
 **name-tag.html**
 ```html

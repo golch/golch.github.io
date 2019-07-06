@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 comments: true
 title: Shadow DOM concepts (번역)
 date:   2017-04-18 12:10:20 +0900

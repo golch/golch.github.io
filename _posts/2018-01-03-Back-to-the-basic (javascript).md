@@ -1,6 +1,6 @@
 ---
 
-layout: post
+layout: posts
 comments: true
 title: Back to the basic (javascript)
 date:   2018-01-03 12:10:20 +0900

@@ -1,6 +1,6 @@
 ---
 
-layout: post
+layout: posts
 comments: true
 title: Django Study(1)
 date:   2019-01-01 13:31:20 +0900

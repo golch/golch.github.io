@@ -1,6 +1,6 @@
 ---
 
-layout: post
+layout: posts
 comments: true
 title: Flask-Login (번역)
 date:   2017-06-03 12:10:20 +0900

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 comments: true
 title: Style an element's shadow DOM (번역)
 date:   2017-05-02 12:10:20 +0900

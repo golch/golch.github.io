@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 comments: true
 title: DOM templating (번역)
 date:   2017-04-20 12:10:20 +0900
